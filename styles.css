@@ -472,3 +472,58 @@ a:focus-visible,.btn:focus-visible,.act__card:focus-visible,.nav__toggle:focus-v
 .hero__thesis{margin:0 0 2rem; max-width:42ch; font-family:var(--serif-disp); font-weight:400; font-size:clamp(1.3rem,2.7vw,1.95rem); line-height:1.25; color:#fff}
 .hero__thesis em{color:var(--brass); font-style:italic}
 @media (max-width:680px){ .equation{grid-template-columns:1fr; gap:.6rem; max-width:420px} }
+
+/* ============================================================
+   DECISION-MAKERS PAGE — components
+   ============================================================ */
+
+/* "start here" highlight */
+.leadbox{
+  background:var(--parch); border:1px solid var(--brass); border-radius:8px;
+  padding:1.7rem 1.9rem; margin:0 0 2.2rem;
+}
+.leadbox__tag{font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:#8A1F2E; margin:0 0 .5rem}
+.leadbox h3{font-family:var(--serif-disp); font-weight:400; font-size:1.6rem; color:var(--navy); margin:0 0 .6rem}
+.leadbox p{margin:0 0 .8rem; color:#3A2E12}
+.leadbox p:last-child{margin-bottom:0}
+
+/* decision-maker map cards */
+.who{display:grid; gap:1.1rem}
+.who__card{
+  background:#fff; border:1px solid var(--line); border-left:4px solid var(--navy);
+  border-radius:8px; padding:1.6rem 1.8rem; box-shadow:0 8px 24px -18px rgba(20,25,45,.5);
+}
+.who__card--now{border-left-color:var(--crimson)}
+.who__role{font-family:var(--mono); font-size:.74rem; letter-spacing:.13em; text-transform:uppercase; color:var(--crimson); margin-bottom:.4rem}
+.who__card h3{font-family:var(--serif-disp); font-weight:400; font-size:1.5rem; color:var(--navy); margin-bottom:.2rem}
+.who__who{font-family:var(--serif); font-style:italic; color:var(--slate); margin:0 0 1rem}
+.who__row{display:grid; grid-template-columns:7.5rem 1fr; gap:.3rem 1rem; padding:.6rem 0; border-top:1px solid var(--line)}
+.who__row dt{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--brass); padding-top:.15rem}
+.who__row dd{margin:0; color:#333; font-size:.97rem}
+.who__row dd strong{color:var(--crimson)}
+
+/* copyable template blocks */
+.tmpl{background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; box-shadow:0 8px 24px -18px rgba(20,25,45,.5); margin:0 0 1.3rem}
+.tmpl__bar{display:flex; justify-content:space-between; align-items:center; gap:1rem; background:var(--navy); padding:.75rem 1.2rem}
+.tmpl__bar h4{font-family:var(--serif-disp); font-weight:400; font-size:1.12rem; color:#fff; margin:0}
+.tmpl__copy{
+  flex:0 0 auto; font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+  background:var(--crimson); color:#fff; border:0; border-radius:3px; padding:.45rem .8rem; cursor:pointer; transition:background .15s;
+}
+.tmpl__copy:hover{background:var(--crimson-dk)}
+.tmpl__body{padding:1.3rem 1.5rem; white-space:pre-wrap; font-family:var(--sans); font-size:.94rem; line-height:1.55; color:#222}
+.fill{background:#FBEBC8; padding:0 .25em; border-radius:2px; font-weight:600; color:#6b4d0e}
+
+/* accordions (model ordinance etc.) */
+details.acc{background:#fff; border:1px solid var(--line); border-radius:8px; margin:0 0 1rem; overflow:hidden}
+details.acc>summary{
+  cursor:pointer; list-style:none; padding:1.1rem 1.5rem; font-family:var(--serif-disp); font-weight:400;
+  font-size:1.22rem; color:var(--navy); display:flex; justify-content:space-between; align-items:center; gap:1rem;
+}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"+"; font-family:var(--mono); color:var(--crimson); font-size:1.3rem; line-height:1}
+details.acc[open]>summary::after{content:"\2013"}
+.acc__body{padding:0 1.5rem 1.4rem; color:#333}
+.acc__body ol,.acc__body ul{margin:.3rem 0 0; padding-left:1.2rem}
+.acc__body li{margin:0 0 .7rem; line-height:1.5}
+.acc__body li strong{color:var(--navy)}
