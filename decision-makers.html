@@ -26,11 +26,10 @@
   </a>
   <nav class="nav__links" aria-label="Sections">
     <a href="index.html">&larr; Home</a>
-    <a href="#start">Start here</a>
+    <a href="#find">Find your rep</a>
     <a href="#map">Who decides</a>
     <a href="#plan">The plan</a>
-    <a href="#tools">Templates</a>
-    <a href="#tools" class="nav__cta">Send an email</a>
+    <a href="#find" class="nav__cta">Contact them</a>
   </nav>
   <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </header>
@@ -46,14 +45,50 @@
     </div>
     <p class="hero__sub">A campaign wins or loses on whether it reaches the handful of people who can flip the switch. In the Upstate, that's a short, knowable list — county councils, city councils, sheriffs, and a few state legislators. Here's who they are, what moves them, and exactly how to get the ball rolling.</p>
     <div class="hero__cta">
-      <a class="btn btn--primary" href="#start">Where to start &rarr;</a>
+      <a class="btn btn--primary" href="#find">Find your representative &rarr;</a>
       <a class="btn btn--ghost" href="#tools">Jump to the templates</a>
     </div>
   </div>
 </section>
 
+<!-- ============ FIND YOUR REP ============ -->
+<section class="section section--paper" id="find">
+  <div class="wrap">
+    <p class="eyebrow">[ FIND &amp; CONTACT YOUR REP ]</p>
+    <h2 class="h2">Who represents you — and how to reach them</h2>
+    <p class="section__lead">Two steps. Because ZIP codes cross council districts, the county's official map is the only reliable way to find <em>your</em> district — so we start there, then hand you a ready-to-send email.</p>
+    <div class="finder">
+      <article class="finder__step">
+        <span class="finder__num">1</span>
+        <h3>Find your district</h3>
+        <p>Search your home address on Greenville County's official map and note your <strong>County Council district number</strong> (they run 17&ndash;28).</p>
+        <p><a class="btn btn--primary" href="https://www.gcgis.org/apps/greenvillejs/?MapTheme=County+Council+Districts" target="_blank" rel="noopener">Open the official district map &rarr;</a></p>
+        <p class="finder__hint">On the map: search your address → read the County Council district it falls in.</p>
+      </article>
+      <article class="finder__step">
+        <span class="finder__num">2</span>
+        <h3>Reach your member</h3>
+        <label class="finder__label" for="distSel">Your council district</label>
+        <select id="distSel" class="finder__select" aria-describedby="finderResult">
+          <option value="">Select district…</option>
+        </select>
+        <div id="finderResult" class="finder__result" aria-live="polite"></div>
+        <p class="finder__hint" style="margin-top:1rem !important">Don't know it yet? Do step 1 first — it takes about thirty seconds.</p>
+      </article>
+    </div>
+    <div class="finder__more">
+      <h4>Also reach —</h4>
+      <div class="linkrow">
+        <a class="btn btn--line" href="https://www.greenvillesc.gov/city-council" target="_blank" rel="noopener">Greenville City Council &rarr;</a>
+        <a class="btn btn--line" href="https://www.scstatehouse.gov/legislatorssearch.php" target="_blank" rel="noopener">Your state legislators (by address) &rarr;</a>
+        <a class="btn btn--line" href="#tools">All email templates &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TIMING / START HERE ============ -->
-<section class="section section--paper" id="start">
+<section class="section section--paper section--tight" id="start">
   <div class="wrap">
     <p class="eyebrow">[ THE ONE THING TO UNDERSTAND FIRST ]</p>
     <h2 class="h2">The live lever right now is local</h2>
@@ -185,7 +220,7 @@
 
     <div class="tmpl">
       <div class="tmpl__bar"><h4>1 · Email your Greenville County Council member</h4><button class="tmpl__copy" type="button">Copy</button></div>
-      <div class="tmpl__body">Subject: Please put ALPR surveillance oversight on the agenda
+      <div class="tmpl__body" id="tmpl-county">Subject: Please put ALPR surveillance oversight on the agenda
 
 Dear Councilmember <span class="fill">[Name]</span>,
 
@@ -325,22 +360,56 @@ Thank you,
     });
   }
 
-  /* copy buttons */
+  /* clipboard helper */
+  function copyText(text, btn, restore) {
+    var done = function () { btn.textContent = "Copied ✓"; setTimeout(function(){ btn.textContent = restore; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, done);
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+  }
+
+  /* copy buttons on the templates */
   document.querySelectorAll(".tmpl__copy").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      var body = btn.closest(".tmpl").querySelector(".tmpl__body");
-      var text = body.innerText;
-      var done = function () { var t = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(function(){ btn.textContent = "Copy"; }, 1600); };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, done);
-      } else {
-        var r = document.createRange(); r.selectNode(body);
-        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        try { document.execCommand("copy"); } catch (e) {}
-        s.removeAllRanges(); done();
-      }
+      copyText(btn.closest(".tmpl").querySelector(".tmpl__body").innerText, btn, "Copy");
     });
   });
+
+  /* find-your-rep widget */
+  var sel = document.getElementById("distSel");
+  var out = document.getElementById("finderResult");
+  var ROSTER = "https://www.greenvillecounty.org/Council/";
+  var MAP = "https://www.gcgis.org/apps/greenvillejs/?MapTheme=County+Council+Districts";
+  if (sel && out) {
+    for (var d = 17; d <= 28; d++) {
+      var o = document.createElement("option");
+      o.value = String(d); o.textContent = "District " + d;
+      sel.appendChild(o);
+    }
+    sel.addEventListener("change", function () {
+      var v = sel.value;
+      if (!v) { out.classList.remove("show"); out.innerHTML = ""; return; }
+      out.innerHTML =
+        '<p><strong>You’re in Greenville County Council District ' + v + '.</strong></p>' +
+        '<p>Get your member’s current name, email &amp; phone straight from the county’s own page — ' +
+        '<a href="' + ROSTER + '" target="_blank" rel="noopener">open the official roster →</a> ' +
+        '(then find District ' + v + '). Not sure it’s right? <a href="' + MAP + '" target="_blank" rel="noopener">re-check on the map →</a></p>' +
+        '<p><button class="tmpl__copy" type="button" id="finderCopy">Copy your email to District ' + v + '</button></p>';
+      out.classList.add("show");
+      var fc = document.getElementById("finderCopy");
+      fc.addEventListener("click", function () {
+        var tpl = document.getElementById("tmpl-county");
+        var text = (tpl ? tpl.innerText : "").replace("District [#]", "District " + v);
+        copyText(text, fc, "Copy your email to District " + v);
+      });
+    });
+  }
 
   /* reveal */
   if ("IntersectionObserver" in window && !reduce) {
