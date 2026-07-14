@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Turn Off the Cameras — End Mass License-Plate Surveillance in the Upstate</title>
+<meta name="description" content="Flock's automated license-plate readers are the digital heir to the writs of assistance the founders went to war to abolish. The case for banning ALPR mass surveillance in Greenville County and South Carolina." />
+<meta property="og:title" content="Turn Off the Cameras" />
+<meta property="og:description" content="A standing army of cameras is watching every car in the Upstate — and the founders fought a war to stop exactly this." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjMEYxNTI2Ii8+CiAgPGcgc3Ryb2tlPSIjQzlBMjRCIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuNiI+CiAgICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMSIgb3BhY2l0eT0iMC41NSIvPgogICAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iNiIgb3BhY2l0eT0iMC44NSIvPgogICAgPHBhdGggZD0iTTE2IDN2NU0xNiAyNHY1TTMgMTZoNU0yNCAxNmg1Ii8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjIuNCIgZmlsbD0iI0EzMjYzOCIvPgo8L3N2Zz4=" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   Turn Off the Cameras — campaign site
+   Palette:  ink #0F1526 · navy #1A2340 · parchment #E9E0CB
+             crimson #A32638 · brass #C9A24B · paper #F7F5EF
+   Type:     Libre Caslon (display, Declaration's typeface)
+             IBM Plex Sans (body) · IBM Plex Mono (data/labels)
+   ============================================================ */
+
+:root{
+  --ink:#0F1526;
+  --navy:#1A2340;
+  --navy-2:#22304F;
+  --parch:#E9E0CB;
+  --crimson:#A32638;
+  --crimson-dk:#8A1F2E;
+  --brass:#C9A24B;
+  --paper:#F7F5EF;
+  --slate:#5A6072;
+  --line:#D8D0BE;
+  --ink-line:#2C3760;
+
+  --serif:"Libre Caslon Text", Georgia, serif;
+  --serif-disp:"Libre Caslon Display", Georgia, serif;
+  --sans:"IBM Plex Sans", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  --wrap:1120px;
+  --pad:clamp(1.25rem, 5vw, 4rem);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{max-width:100%}
+h1,h2,h3,h4{margin:0}
+
+.wrap{max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad)}
+
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--crimson); font-weight:500;
+  margin:0 0 1.1rem;
+}
+.eyebrow--gold{color:var(--brass)}
+.h2{
+  font-family:var(--serif-disp); font-weight:400;
+  font-size:clamp(1.9rem, 4.4vw, 3.1rem); line-height:1.06;
+  letter-spacing:-.01em; color:var(--ink); max-width:20ch; margin:0 0 2.4rem;
+}
+.h2--light{color:#fff}
+.display{font-family:var(--serif-disp); font-weight:400; line-height:1.02; letter-spacing:-.015em}
+.display--xl{
+  color:#fff; font-size:clamp(2.4rem, 6.2vw, 4.6rem); max-width:16ch; margin:0 0 1.6rem;
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block; font-family:var(--mono); font-size:.9rem; font-weight:500;
+  letter-spacing:.02em; text-decoration:none; padding:.95rem 1.6rem;
+  border-radius:3px; transition:transform .15s ease, background .15s ease, color .15s ease;
+}
+.btn--primary{background:var(--crimson); color:#fff}
+.btn--primary:hover{background:var(--crimson-dk); transform:translateY(-2px)}
+.btn--ghost{border:1px solid rgba(255,255,255,.35); color:#fff}
+.btn--ghost:hover{border-color:var(--brass); color:var(--brass); transform:translateY(-2px)}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem; padding:.7rem var(--pad);
+  background:rgba(15,21,38,.86); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--ink-line);
+}
+.nav__brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; color:#fff}
+.reticle-mark{color:var(--brass); display:inline-flex}
+.nav__wordmark{font-family:var(--mono); font-weight:600; font-size:.82rem; letter-spacing:.12em; color:#fff}
+.nav__links{display:flex; align-items:center; gap:1.6rem}
+.nav__links a{
+  font-family:var(--mono); font-size:.82rem; letter-spacing:.03em; text-decoration:none;
+  color:#C7CEE0; transition:color .15s;
+}
+.nav__links a:hover{color:#fff}
+.nav__cta{background:var(--crimson); color:#fff !important; padding:.5rem .95rem; border-radius:3px}
+.nav__cta:hover{background:var(--crimson-dk)}
+.nav__toggle{display:none; flex-direction:column; gap:4px; background:none; border:0; cursor:pointer; padding:.4rem}
+.nav__toggle span{width:22px; height:2px; background:#fff; display:block}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative; overflow:hidden;
+  background:radial-gradient(120% 90% at 82% 8%, #22304F 0%, var(--ink) 55%);
+  color:#fff; padding:clamp(4rem,11vh,8rem) 0 clamp(4rem,10vh,7rem);
+}
+.hero__inner{max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad); position:relative; z-index:2}
+.hero__title{
+  font-family:var(--serif-disp); font-weight:400;
+  font-size:clamp(2.35rem, 6.4vw, 5rem); line-height:1.03; letter-spacing:-.015em; color:#fff;
+}
+.hero__sub{
+  max-width:56ch; margin:1.9rem 0 2.4rem; color:#C7CEE0; font-size:clamp(1.02rem,1.6vw,1.2rem);
+}
+.hero__cta{display:flex; gap:1rem; flex-wrap:wrap}
+
+/* reticle brackets around hero headline */
+.reticle{position:relative; display:inline-block; padding:1.4rem 1.7rem; margin-top:.4rem}
+.reticle::before,.reticle::after{
+  content:""; position:absolute; width:34px; height:34px; pointer-events:none;
+  border:2px solid var(--brass);
+}
+.reticle::before{top:0; left:0; border-right:0; border-bottom:0}
+.reticle::after{bottom:0; right:0; border-left:0; border-top:0}
+.reticle > h1::before, .reticle > h1::after{
+  content:""; position:absolute; width:34px; height:34px; border:2px solid var(--crimson);
+}
+/* second pair of corners via the h1 wrapper */
+.reticle{
+  --c1:var(--brass);
+}
+.reticle h1{position:relative}
+
+.scanline{
+  position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.5;
+  background:linear-gradient(to bottom, transparent 0%, rgba(201,162,75,.0) 46%, rgba(201,162,75,.55) 50%, rgba(201,162,75,.0) 54%, transparent 100%);
+  background-size:100% 220px; background-repeat:no-repeat;
+  animation:scan 7s linear infinite;
+}
+@keyframes scan{
+  0%{background-position:0 -240px}
+  100%{background-position:0 120%}
+}
+@media (prefers-reduced-motion:reduce){.scanline{animation:none; opacity:.18}}
+
+/* ============ SECTIONS ============ */
+.section{padding:clamp(3.6rem,8vh,6.5rem) 0}
+.section--tight{padding-top:0}
+.section--paper{background:var(--paper); color:var(--ink)}
+.section--ink{background:var(--ink); color:#fff}
+.section--ink .h2{color:#fff}
+
+/* ---------- ask ladder ---------- */
+.ladder{display:grid; gap:1rem}
+.ladder__step{
+  display:flex; gap:1.4rem; align-items:flex-start;
+  background:#fff; border:1px solid var(--line); border-radius:8px;
+  padding:1.6rem 1.8rem; box-shadow:0 8px 24px -18px rgba(20,25,45,.5);
+}
+.ladder__num{
+  flex:0 0 auto; width:2.7rem; height:2.7rem; border-radius:50%;
+  background:var(--navy); color:#fff; display:grid; place-items:center;
+  font-family:var(--serif-disp); font-size:1.35rem;
+}
+.ladder__step h3{font-family:var(--serif-disp); font-weight:400; font-size:1.4rem; color:var(--crimson); margin-bottom:.35rem}
+.ladder__step p{margin:0; color:#333}
+
+/* ---------- card grids ---------- */
+.grid{display:grid; gap:1.1rem}
+.grid--2{grid-template-columns:repeat(2,1fr)}
+.grid--3{grid-template-columns:repeat(3,1fr)}
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:8px; padding:1.7rem 1.8rem;
+  box-shadow:0 8px 24px -18px rgba(20,25,45,.5);
+}
+.card h3{font-family:var(--serif-disp); font-weight:400; font-size:1.4rem; color:var(--navy); margin-bottom:.5rem; position:relative; padding-left:1rem}
+.card h3::before{content:""; position:absolute; left:0; top:.55rem; width:.5rem; height:.5rem; border-radius:50%; background:var(--crimson)}
+.card p{margin:0; color:#333}
+.card--warn h3{color:var(--crimson)}
+.card--warn h3::before{display:none}
+.card--warn h3{padding-left:0}
+
+/* ---------- stats ---------- */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2.4rem}
+.stat{
+  background:var(--navy); border:1px solid var(--ink-line); border-radius:8px;
+  padding:1.8rem 1.2rem; text-align:center;
+}
+.stat__num{
+  display:block; font-family:var(--serif-disp); font-weight:400;
+  font-size:clamp(2.6rem,5vw,3.6rem); color:var(--brass); line-height:1;
+}
+.stat__tilde{font-size:.7em; vertical-align:.05em}
+.stat__label{display:block; margin-top:.8rem; font-size:.9rem; color:#D5DBEA; line-height:1.35}
+.ink-note{max-width:70ch; font-family:var(--serif); font-style:italic; font-size:1.12rem; color:#CDD4E6; margin:0}
+.ink-note strong{color:#fff; font-style:normal}
+
+/* ---------- story ---------- */
+.split{display:grid; grid-template-columns:1.55fr 1fr; gap:1.1rem; align-items:stretch}
+.split--wide{grid-template-columns:1fr 1fr; align-items:center}
+.split--legal{grid-template-columns:1.6fr 1fr}
+.story{
+  background:#fff; border:1px solid var(--crimson); border-radius:8px; padding:2rem 2.1rem;
+  box-shadow:0 8px 24px -18px rgba(20,25,45,.5);
+}
+.story h3{font-family:var(--serif-disp); font-weight:400; font-size:1.7rem; color:var(--crimson); margin-bottom:.9rem}
+.story p{margin:0 0 1rem}
+.story__foot{color:var(--slate); font-family:var(--serif); font-style:italic}
+.pattern{background:var(--navy); border-radius:8px; padding:1.8rem 1.9rem; color:#fff}
+.pattern h4{font-family:var(--serif-disp); font-weight:400; font-size:1.25rem; color:var(--brass); margin-bottom:1rem}
+.pattern ul{margin:0; padding:0; list-style:none; display:grid; gap:1rem}
+.pattern li{position:relative; padding-left:1.1rem; font-size:.96rem; color:#DCE1EF; line-height:1.4}
+.pattern li::before{content:""; position:absolute; left:0; top:.5rem; width:.45rem; height:.45rem; border-radius:50%; background:var(--crimson)}
+
+/* ---------- divider ---------- */
+.divider{text-align:left}
+.divider__sub{max-width:60ch; font-family:var(--serif); font-size:1.2rem; color:#C7CEE0; margin:0}
+.divider__sub em{color:#fff}
+
+/* ---------- writs traits + quote ---------- */
+.traits{list-style:none; counter-reset:t; margin:0; padding:0; display:grid; gap:1.3rem}
+.traits li{
+  counter-increment:t; position:relative; padding-left:3.4rem; color:#333;
+}
+.traits li::before{
+  content:counter(t); position:absolute; left:0; top:-.1rem;
+  width:2.3rem; height:2.3rem; border-radius:50%; background:var(--navy); color:#fff;
+  display:grid; place-items:center; font-family:var(--serif-disp); font-size:1.1rem;
+}
+.traits li span{display:block; font-family:var(--serif-disp); font-size:1.28rem; color:var(--crimson); margin-bottom:.2rem}
+.quote{
+  margin:0; background:var(--navy); color:#fff; border-radius:8px; padding:2.2rem 2.3rem 1.9rem; position:relative;
+}
+.quote__mark{font-family:var(--serif-disp); font-size:4.5rem; line-height:.6; color:var(--brass); height:2.2rem}
+.quote blockquote{
+  margin:.4rem 0 1.4rem; font-family:var(--serif); font-style:italic; font-size:1.5rem; line-height:1.3;
+}
+.quote figcaption{font-family:var(--mono); font-size:.8rem; color:#C7CEE0; line-height:1.5}
+
+/* ---------- amendment ---------- */
+.amendment{
+  margin:0 0 1.6rem; background:var(--parch); border:1px solid var(--brass); border-radius:8px;
+  padding:2rem 2.2rem; font-family:var(--serif); font-style:italic; font-size:clamp(1.1rem,1.8vw,1.42rem);
+  line-height:1.35; color:#3A2E12; max-width:none;
+}
+.amendment strong{font-style:normal}
+.readagainst{background:#fff; border:1px solid var(--line); border-radius:8px; padding:1.7rem 1.9rem}
+.readagainst h3{font-family:var(--serif-disp); font-weight:400; font-size:1.35rem; color:var(--navy); margin-bottom:.9rem}
+.readagainst ul{margin:0; padding:0; list-style:none; display:grid; gap:.7rem}
+.readagainst li{position:relative; padding-left:1.2rem}
+.readagainst li::before{content:""; position:absolute; left:0; top:.62rem; width:.45rem; height:.45rem; border-radius:50%; background:var(--crimson)}
+.readagainst li span{font-weight:600}
+
+/* ---------- grievances ---------- */
+.griev{background:#fff; border:1px solid var(--line); border-radius:8px; padding:1.9rem; box-shadow:0 8px 24px -18px rgba(20,25,45,.5)}
+.griev blockquote{
+  margin:0 0 1rem; font-family:var(--serif-disp); font-weight:400; font-size:1.28rem; line-height:1.3;
+  color:var(--navy); font-style:italic;
+}
+.griev p{margin:0; color:#444; padding-top:1rem; border-top:1px solid var(--line)}
+
+/* ---------- compare ---------- */
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:.5rem .9rem; margin-top:.5rem}
+.compare__head{font-family:var(--serif-disp); font-size:1.15rem; padding:.8rem 1.1rem; border-radius:5px; text-align:center}
+.compare__head--then{background:var(--parch); color:#3A2E12}
+.compare__head--now{background:var(--crimson); color:#fff}
+.compare__then,.compare__now{padding:.95rem 1.1rem; border-radius:5px; font-size:.98rem}
+.compare__then{background:var(--navy-2); color:#CFD6E6}
+.compare__now{background:#141C33; color:#fff; font-weight:500; border:1px solid var(--ink-line)}
+
+/* ---------- pull quote ---------- */
+.pullquote{text-align:left}
+.pullquote .quote__mark--big{font-family:var(--serif-disp); font-size:7rem; line-height:.4; color:var(--crimson); height:3rem}
+.pullquote__text{
+  font-family:var(--serif-disp); font-weight:400; font-style:italic;
+  font-size:clamp(1.7rem,4.4vw,3.2rem); line-height:1.16; color:#fff; max-width:22ch; margin:1.4rem 0 1.4rem;
+}
+.pullquote__cite{font-family:var(--mono); font-size:.9rem; color:#C7CEE0; margin:0}
+
+/* ---------- legal / bigstat ---------- */
+.cases{display:grid; gap:1rem}
+.case{background:#fff; border:1px solid var(--line); border-radius:8px; padding:1.4rem 1.6rem}
+.case h3{font-family:var(--serif-disp); font-weight:400; font-size:1.3rem; color:var(--navy); margin-bottom:.35rem}
+.case h3 span{font-family:var(--mono); font-size:.78rem; color:var(--crimson); margin-left:.5rem; vertical-align:.15em}
+.case p{margin:0; color:#444; font-size:.96rem}
+.bigstat{background:var(--navy); border-radius:8px; padding:2.2rem 2rem; text-align:center; color:#fff; align-self:start}
+.bigstat__num{font-family:var(--serif-disp); font-size:clamp(4rem,8vw,5.6rem); color:var(--brass); line-height:.9; display:block}
+.bigstat p{margin:1rem 0 0; color:#DCE1EF}
+.bigstat__foot{font-family:var(--serif); font-style:italic; font-size:.95rem; color:#B9C1D8 !important}
+
+/* ---------- plan lanes ---------- */
+.lane{background:#fff; border:1px solid var(--line); border-radius:8px; padding:0 0 1.7rem; overflow:hidden; box-shadow:0 8px 24px -18px rgba(20,25,45,.5)}
+.lane__tag{display:block; background:var(--navy); color:var(--brass); font-family:var(--mono); font-size:.78rem; letter-spacing:.18em; padding:.7rem 1.5rem; margin-bottom:1.3rem}
+.lane h3{font-family:var(--serif-disp); font-weight:400; font-size:1.35rem; color:var(--crimson); margin:0 1.5rem .6rem; line-height:1.15}
+.lane p{margin:0 1.5rem; color:#444; font-size:.97rem}
+.honest{margin:1.8rem 0 0; text-align:center; font-family:var(--serif); font-style:italic; color:var(--slate)}
+
+/* ---------- action ---------- */
+.act__lead{max-width:62ch; color:#C7CEE0; font-size:1.15rem; margin:0 0 2.6rem}
+.act__grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+.act__card{
+  display:block; text-decoration:none; background:var(--navy); border:1px solid var(--ink-line);
+  border-radius:8px; padding:1.6rem 1.7rem; transition:transform .15s ease, border-color .15s ease;
+}
+.act__card:hover{transform:translateY(-3px); border-color:var(--brass)}
+.act__k{font-family:var(--mono); font-size:.8rem; color:var(--brass)}
+.act__card h3{font-family:var(--serif-disp); font-weight:400; font-size:1.35rem; color:#fff; margin:.4rem 0 .5rem}
+.act__card p{margin:0 0 1rem; color:#C7CEE0; font-size:.96rem}
+.act__go{font-family:var(--mono); font-size:.82rem; color:var(--brass)}
+.act__ask{
+  display:flex; flex-wrap:wrap; gap:.8rem; align-items:center; justify-content:center;
+  margin-top:2.8rem; font-family:var(--serif-disp); font-style:italic; font-size:clamp(1.1rem,2.4vw,1.6rem); color:#fff;
+}
+.act__ask .dot{color:var(--crimson)}
+
+/* ============ FOOTER ============ */
+.footer{background:#0A0F1E; color:#8A93AC; padding:3rem 0}
+.footer__grid{display:grid; grid-template-columns:1fr 2fr; gap:2rem; align-items:start}
+.reticle-mark--sm{color:var(--brass)}
+.footer__tag{font-family:var(--serif); font-style:italic; color:#C7CEE0; margin:.7rem 0 0; font-size:1.05rem; max-width:24ch}
+.footer__src{font-size:.82rem; line-height:1.65; margin:0}
+.footer__src em{color:#AAB3CC}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1; transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  .split,.split--wide,.split--legal{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .grid--3,.act__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .nav__links{
+    position:fixed; inset:56px 0 auto 0; flex-direction:column; align-items:flex-start; gap:0;
+    background:var(--ink); border-bottom:1px solid var(--ink-line);
+    max-height:0; overflow:hidden; transition:max-height .28s ease; padding:0 var(--pad);
+  }
+  .nav__links.open{max-height:340px; padding:.6rem var(--pad) 1.2rem}
+  .nav__links a{padding:.85rem 0; width:100%; border-bottom:1px solid var(--ink-line)}
+  .nav__cta{width:auto; margin-top:.7rem}
+  .nav__toggle{display:flex}
+  .grid--2,.grid--3,.act__grid,.stats{grid-template-columns:1fr}
+  .compare{gap:.4rem .5rem}
+  .compare__head,.compare__then,.compare__now{font-size:.86rem; padding:.7rem .7rem}
+  .reticle{padding:1rem 1.1rem}
+  .reticle::before,.reticle::after,.reticle > h1::before,.reticle > h1::after{width:22px; height:22px}
+}
+
+/* keyboard focus */
+a:focus-visible,.btn:focus-visible,.act__card:focus-visible,.nav__toggle:focus-visible{
+  outline:2px solid var(--brass); outline-offset:3px; border-radius:2px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="top">
+  <a class="nav__brand" href="#top" aria-label="Turn off the cameras — home">
+    <span class="reticle-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="28" height="28"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/><circle cx="16" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.8"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/><path d="M16 1v6M16 25v6M1 16h6M25 16h6" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+    <span class="nav__wordmark">TURN&nbsp;OFF&nbsp;THE&nbsp;CAMERAS</span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#problem">The problem</a>
+    <a href="#principle">The principle</a>
+    <a href="#plan">The plan</a>
+    <a href="#act" class="nav__cta">Take action</a>
+  </nav>
+  <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="scanline" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <p class="eyebrow eyebrow--gold">GREENVILLE COUNTY, SC &nbsp;·&nbsp; 57 CAMERAS ONLINE &nbsp;·&nbsp; 0 PUBLIC VOTES</p>
+    <div class="reticle">
+      <h1 class="hero__title">A standing army<br>of cameras is watching<br>every car you drive.</h1>
+    </div>
+    <p class="hero__sub">Flock's automated license-plate readers photograph, tag, and store the movements of every driver in the Upstate — no suspicion, no warrant, no vote. It is the same general search the founders went to war to abolish, rebuilt with AI and made permanent.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#act">Take action &rarr;</a>
+      <a class="btn btn--ghost" href="https://deflock.org/" target="_blank" rel="noopener">See the cameras near you</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE ASK ============ -->
+<section class="section section--paper" id="ask">
+  <div class="wrap">
+    <p class="eyebrow">[ WHAT I'M ASKING YOU TO DO ]</p>
+    <h2 class="h2">The ask, up front</h2>
+    <div class="ladder">
+      <article class="ladder__step reveal">
+        <span class="ladder__num">1</span>
+        <div>
+          <h3>Turn off what we already have</h3>
+          <p>Let Greenville's Flock contract lapse — or pass a local ordinance requiring a public vote, a warrant, and short data-retention limits before any camera operates.</p>
+        </div>
+      </article>
+      <article class="ladder__step reveal">
+        <span class="ladder__num">2</span>
+        <div>
+          <h3>Back the strongest state bill</h3>
+          <p>Support <strong>H.4675</strong>, the South Carolina Community Data Protection &amp; Responsible Surveillance Act — it bars cloud-stored, AI-driven vehicle tracking and forces a warrant for searches.</p>
+        </div>
+      </article>
+      <article class="ladder__step reveal">
+        <span class="ladder__num">3</span>
+        <div>
+          <h3>Aim for a clean ban</h3>
+          <p>Champion statewide legislation that ends dragnet ALPR surveillance outright — not one more rule applied after the data is already collected.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT DOES ============ -->
+<section class="section section--paper section--tight" id="problem">
+  <div class="wrap">
+    <p class="eyebrow">[ NOT YOUR GRANDFATHER'S PLATE READER ]</p>
+    <h2 class="h2">What a Flock camera actually does</h2>
+    <div class="grid grid--2">
+      <article class="card reveal"><h3>Every car, all the time</h3><p>It photographs and logs every vehicle that passes — not suspects, everyone — 24/7, whether or not any crime is suspected.</p></article>
+      <article class="card reveal"><h3>An AI fingerprint</h3><p>Software catalogs plate, make, model, color, bumper stickers, dents, and roof racks — a searchable fingerprint of your vehicle and your habits.</p></article>
+      <article class="card reveal"><h3>A national cloud network</h3><p>Data streams to Flock's servers and a nationwide database. Thousands of agencies — and federal ones like ICE and the DEA — can query it.</p></article>
+      <article class="card reveal"><h3>A map of your life</h3><p>Aggregated, it reveals where you sleep, worship, protest, and take your children — a detailed record of movement, held for months or years.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HAPPENING HERE (stats) ============ -->
+<section class="section section--ink" id="here">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--gold">[ THIS IS ALREADY HERE ]</p>
+    <h2 class="h2 h2--light">It's happening in Greenville — right now</h2>
+    <div class="stats">
+      <div class="stat reveal"><span class="stat__num" data-count="57">0</span><span class="stat__label">Flock cameras run by Greenville PD</span></div>
+      <div class="stat reveal"><span class="stat__num" data-count="0">0</span><span class="stat__label">public council votes on an oversight ordinance</span></div>
+      <div class="stat reveal"><span class="stat__num" data-count="2021" data-plain="true">2021</span><span class="stat__label">the year cameras first went up, quietly</span></div>
+      <div class="stat reveal"><span class="stat__num"><span class="stat__tilde">~</span><span data-count="50">0</span></span><span class="stat__label">SC agencies using ALPRs — SLED, Highway Patrol, Clemson &amp; Furman among them</span></div>
+    </div>
+    <p class="ink-note">Greenville's first cameras were bought with <strong>$22,000 in federal civil-asset-forfeiture money</strong> — funds that bypassed the normal council budget. Five years on, there are still no public rules on who sees the data, how long it is kept, or whether anyone audits its use.</p>
+  </div>
+</section>
+
+<!-- ============ WENT WRONG HERE ============ -->
+<section class="section section--paper" id="wrong">
+  <div class="wrap">
+    <p class="eyebrow">[ THIS ISN'T HYPOTHETICAL ]</p>
+    <h2 class="h2">It has already gone wrong — here</h2>
+    <div class="split">
+      <article class="story reveal">
+        <h3>Two Greenville sisters</h3>
+        <p>A Flock camera wrongly flagged their rented car as stolen. Police drew their weapons, handcuffed both women, and put them in the back of a patrol car — <strong>before anyone realized the plate had simply been mis-reported.</strong></p>
+        <p class="story__foot">They are now suing the Greenville Police Department. This happened to our neighbors, on our streets.</p>
+      </article>
+      <aside class="pattern reveal">
+        <h4>A wider pattern</h4>
+        <ul>
+          <li>Colorado: a woman wrongly accused of theft on a false Flock hit.</li>
+          <li>Kansas: officers used ALPRs to pursue a man who criticized police in an op-ed.</li>
+          <li>A single misread scan can turn an innocent driver into a felony stop in seconds.</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRINCIPLE DIVIDER ============ -->
+<section class="section section--ink divider" id="principle">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--gold">[ THE FOUNDING PRINCIPLE ]</p>
+    <h2 class="display display--xl">The founders fought a war over this exact thing.</h2>
+    <p class="divider__sub">The general, suspicionless search was not a footnote to the Revolution. John Adams called the fight against it the moment <em>&ldquo;the child Independence was born.&rdquo;</em></p>
+  </div>
+</section>
+
+<!-- ============ WRITS OF ASSISTANCE ============ -->
+<section class="section section--paper" id="writs">
+  <div class="wrap">
+    <p class="eyebrow">[ 1761 · BOSTON ]</p>
+    <h2 class="h2">The writ of assistance: a general warrant</h2>
+    <div class="split split--wide">
+      <ol class="traits">
+        <li class="reveal"><span>Search at will</span>No probable cause, no specific target — officers could enter and search any home or shop.</li>
+        <li class="reveal"><span>Everyone, indefinitely</span>It named no person and no place; it swept in the innocent alongside the guilty.</li>
+        <li class="reveal"><span>Perpetual</span>&ldquo;There is no return&rdquo; — it never expired within a reign and answered to no one.</li>
+        <li class="reveal"><span>No accountability</span>&ldquo;Every man may reign secure in his petty tyranny,&rdquo; Otis warned.</li>
+      </ol>
+      <figure class="quote reveal">
+        <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+        <blockquote>The worst instrument of arbitrary power, the most destructive of English liberty and the fundamental principles of law, that ever was found in an English law-book.</blockquote>
+        <figcaption>James Otis, arguing against the writs of assistance — Old State House, Boston, February 1761</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOURTH AMENDMENT ============ -->
+<section class="section section--paper section--tight" id="fourth">
+  <div class="wrap">
+    <p class="eyebrow">[ THE REMEDY THEY WROTE ]</p>
+    <h2 class="h2">The Fourth Amendment exists to forbid exactly this</h2>
+    <blockquote class="amendment reveal">
+      &ldquo;The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated <strong>&hellip; and no Warrants shall issue, but upon probable cause &hellip; particularly describing the place to be searched, and the persons or things to be seized.</strong>&rdquo;
+    </blockquote>
+    <div class="readagainst reveal">
+      <h3>Read it against a Flock camera:</h3>
+      <ul>
+        <li><span>No probable cause</span> — it searches everyone who drives past.</li>
+        <li><span>No particular place or person</span> — the opposite of what the amendment demands.</li>
+        <li><span>No warrant, no oath, no judge</span> — the data is collected first and questioned never.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STANDING ARMY / GRIEVANCES ============ -->
+<section class="section section--paper section--tight" id="grievances">
+  <div class="wrap">
+    <p class="eyebrow">[ THE DECLARATION'S OWN WORDS ]</p>
+    <h2 class="h2">A standing army — in peacetime, without our consent</h2>
+    <div class="grid grid--2">
+      <article class="griev reveal">
+        <blockquote>&ldquo;He has erected a multitude of New Offices, and sent hither swarms of Officers to harass our people, and eat out their substance.&rdquo;</blockquote>
+        <p>A network of cameras on every thoroughfare is the modern swarm of officers — a permanent watch that costs the public and answers to no one.</p>
+      </article>
+      <article class="griev reveal">
+        <blockquote>&ldquo;He has kept among us, in times of Peace, Standing Armies without the Consent of our legislatures.&rdquo;</blockquote>
+        <p>Cameras that never sleep, deployed with no public vote, are a standing surveillance force stationed against a peaceful population.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORSE THAN 1776 ============ -->
+<section class="section section--ink" id="worse">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--gold">[ WHY THIS IS WORSE ]</p>
+    <h2 class="h2 h2--light">Far beyond anything King George could do</h2>
+    <div class="compare">
+      <div class="compare__head compare__head--then">The writ of assistance, 1761</div>
+      <div class="compare__head compare__head--now">The ALPR network, today</div>
+      <div class="compare__then reveal">Needed a human officer to walk to your door</div>
+      <div class="compare__now reveal">Runs automatically, 24/7, with no human effort</div>
+      <div class="compare__then reveal">Expired when the king died</div>
+      <div class="compare__now reveal">Permanent — and retroactively searchable for months or years</div>
+      <div class="compare__then reveal">Local to one colony</div>
+      <div class="compare__now reveal">A national database queried across 5,000+ communities</div>
+      <div class="compare__then reveal">Left a paper trail a court could see</div>
+      <div class="compare__now reveal">Opaque cloud access — even by ICE, DEA, and out-of-state police</div>
+      <div class="compare__then reveal">Searched a place</div>
+      <div class="compare__now reveal">Reconstructs a life: home, church, protests, your children's school</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRANKLIN ============ -->
+<section class="section section--ink pullquote">
+  <div class="wrap">
+    <div class="quote__mark quote__mark--big" aria-hidden="true">&ldquo;</div>
+    <p class="pullquote__text">Those who would give up essential Liberty, to purchase a little temporary Safety, deserve neither Liberty nor Safety.</p>
+    <p class="pullquote__cite">— Benjamin Franklin, on behalf of the Pennsylvania Assembly, 1755</p>
+  </div>
+</section>
+
+<!-- ============ DOESN'T DELIVER SAFETY ============ -->
+<section class="section section--paper" id="safety">
+  <div class="wrap">
+    <p class="eyebrow">[ THE TRADE DOESN'T EVEN PAY OFF ]</p>
+    <h2 class="h2">And it doesn't deliver the safety it promises</h2>
+    <div class="grid grid--2">
+      <article class="card card--warn reveal"><h3>Flock lies to the officials it sells to</h3><p>In Oshkosh, WI, Flock told the council its system built no movement &ldquo;heat map.&rdquo; The next morning the city learned that was false and reconvened to cancel.</p></article>
+      <article class="card card--warn reveal"><h3>Even best-in-class rules failed</h3><p>Austin had one of the strictest ALPR policies in the country. Its own audit found 20%+ of database searches lacked any documented justification. The city cancelled.</p></article>
+      <article class="card card--warn reveal"><h3>The custodians aren't spotless</h3><p>Spartanburg County's Flock deployment was overseen by Sheriff Chuck Wright — who pled guilty to federal felonies, including wire fraud, in October 2025.</p></article>
+      <article class="card card--warn reveal"><h3>The system itself can be hacked</h3><p>Independent researchers found dozens of vulnerabilities in Flock cameras. A similar Iranian ALPR network was hacked and used to target individuals.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIDE TURNING ============ -->
+<section class="section section--paper section--tight" id="tide">
+  <div class="wrap">
+    <p class="eyebrow">[ YOU WOULD NOT BE OUT ON A LIMB ]</p>
+    <h2 class="h2">The law — and the country — are turning</h2>
+    <div class="split split--legal">
+      <div class="cases">
+        <article class="case reveal"><h3>Norfolk, VA <span>2024</span></h3><p>A court ruled that pulling location data from the city's Flock cameras was a warrantless search under the Fourth Amendment — likening the network to a tracking device.</p></article>
+        <article class="case reveal"><h3>Carpenter v. U.S. <span>2018</span></h3><p>The Supreme Court held that long-term, comprehensive location tracking implicates the Fourth Amendment even for movements in public.</p></article>
+        <article class="case reveal"><h3>United States v. Jones <span>2012</span></h3><p>The Court held that attaching a GPS tracker to follow a vehicle's movements is a search — the precedent Norfolk applied to ALPRs.</p></article>
+      </div>
+      <aside class="bigstat reveal">
+        <span class="bigstat__num" data-count="55" data-suffix="+">0</span>
+        <p>localities have ended or rejected Flock contracts in the past year.</p>
+        <p class="bigstat__foot">Austin · Denver · Evanston · San Diego · Flagstaff · Sedona — red cities and blue. This is bipartisan.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PLAN ============ -->
+<section class="section section--paper" id="plan">
+  <div class="wrap">
+    <p class="eyebrow">[ THE REALISTIC PATH ]</p>
+    <h2 class="h2">How we actually win this in South Carolina</h2>
+    <div class="grid grid--3">
+      <article class="lane reveal"><span class="lane__tag">LOCAL</span><h3>Let the contract lapse, or pass an ordinance</h3><p>City &amp; county councils control the police contract directly — the fastest lever, no state action required.</p></article>
+      <article class="lane reveal"><span class="lane__tag">STATE</span><h3>Back H.4675 — the strongest bill filed</h3><p>Bans cloud-stored ALPR data and AI vehicle tracking, caps retention at 21 days, requires a warrant. Stuck in House Judiciary — it needs a champion.</p></article>
+      <article class="lane reveal"><span class="lane__tag">WATCH</span><h3>S.447 is furthest along</h3><p>Cleared a Senate Judiciary subcommittee. It regulates rather than bans — push floor amendments to strengthen it; don't let it become cover for the status quo.</p></article>
+    </div>
+    <p class="honest">Honest note: none of the four bills now pending is a clean, outright ban. Closing that gap is where a Greenville-area champion can lead.</p>
+  </div>
+</section>
+
+<!-- ============ TAKE ACTION ============ -->
+<section class="section section--ink" id="act">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--gold">[ TAKE ACTION ]</p>
+    <h2 class="display display--xl">What kind of state do we want to be?</h2>
+    <p class="act__lead">Our founders tore down the general search because a free people is not watched by default. We can keep that inheritance — or hand our children a surveillance grid the King himself never dreamed of. Here's where to start.</p>
+    <div class="act__grid">
+      <a class="act__card" href="https://www.scstatehouse.gov/legislatorssearch.php" target="_blank" rel="noopener">
+        <span class="act__k">01</span><h3>Find your legislators</h3><p>Look up your SC House member and Senator by address, then ask them to back H.4675.</p><span class="act__go">scstatehouse.gov &rarr;</span>
+      </a>
+      <a class="act__card" href="https://www.greenvillesc.gov/168/City-Council" target="_blank" rel="noopener">
+        <span class="act__k">02</span><h3>Email city council</h3><p>Greenville PD's contract is theirs to end. Ask for an oversight vote or a lapse.</p><span class="act__go">greenvillesc.gov &rarr;</span>
+      </a>
+      <a class="act__card" href="https://www.greenvillecounty.org/CountyCouncil/" target="_blank" rel="noopener">
+        <span class="act__k">03</span><h3>Email county council</h3><p>Same lever at the county level — for the Sheriff's Office and county facilities.</p><span class="act__go">greenvillecounty.org &rarr;</span>
+      </a>
+      <a class="act__card" href="https://deflock.org/" target="_blank" rel="noopener">
+        <span class="act__k">04</span><h3>Map the cameras</h3><p>See exactly where the readers are watching your street on DeFlock's live map.</p><span class="act__go">deflock.org &rarr;</span>
+      </a>
+      <a class="act__card" href="https://eyesoffgsp.org/" target="_blank" rel="noopener">
+        <span class="act__k">05</span><h3>Join the local group</h3><p>Eyes Off GSP is already organizing across Greenville &amp; Spartanburg. You're not starting from scratch.</p><span class="act__go">eyesoffgsp.org &rarr;</span>
+      </a>
+      <a class="act__card" href="https://www.aclu.org/get-the-flock-out-toolkit" target="_blank" rel="noopener">
+        <span class="act__k">06</span><h3>Grab the toolkit</h3><p>The ACLU's step-by-step guide for records requests, coalition letters, and public comment.</p><span class="act__go">aclu.org &rarr;</span>
+      </a>
+    </div>
+    <div class="act__ask">
+      <span>Turn it off locally</span><span class="dot">·</span><span>Champion H.4675</span><span class="dot">·</span><span>Ban the dragnet</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <span class="reticle-mark reticle-mark--sm" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="22" height="22"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/><circle cx="16" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.8"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/><path d="M16 1v6M16 25v6M1 16h6M25 16h6" stroke="currentColor" stroke-width="1.5"/></svg>
+      </span>
+      <p class="footer__tag">Turn off the cameras. A free people is not watched by default.</p>
+    </div>
+    <p class="footer__src">Sources: Post &amp; Courier (Greenville), DeflockSC / Eyes Off GSP, ACLU &ldquo;Get the Flock Out,&rdquo; EFF ALPR explainer, and scstatehouse.gov bill records; the Norfolk ruling, <em>Carpenter v. United States</em>, and <em>United States v. Jones</em>. Founder quotations from the National Constitution Center's text of James Otis's argument, the Adams Papers, and the ratified Constitution. Bill statuses reflect the 2025&ndash;2026 session and change frequently — verify before citing. Prepared by a concerned Upstate resident; not legal advice.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- mobile nav ---- */
+  var toggle = document.querySelector(".nav__toggle");
+  var links = document.querySelector(".nav__links");
+  if (toggle && links) {
+    toggle.addEventListener("click", function () {
+      var open = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    links.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  /* ---- count-up ---- */
+  function countUp(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    var target = parseInt(el.dataset.count, 10);
+    var suffix = el.dataset.suffix || "";
+    if (reduce || el.dataset.plain === "true") { el.textContent = target + suffix; return; }
+    var dur = 1100, start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ---- reveal + trigger counters ---- */
+  var io;
+  if ("IntersectionObserver" in window && !reduce) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          en.target.querySelectorAll && en.target.querySelectorAll("[data-count]").forEach(countUp);
+          if (en.target.hasAttribute("data-count")) countUp(en.target);
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    document.querySelectorAll("[data-count]").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+    document.querySelectorAll("[data-count]").forEach(countUp);
+  }
+})();
+
+</script>
+</body>
+</html>
