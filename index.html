@@ -124,6 +124,32 @@ h1,h2,h3,h4{margin:0}
 }
 .hero__cta{display:flex; gap:1rem; flex-wrap:wrap}
 
+/* founder quote, featured in hero */
+.hero__founder{
+  margin:2.4rem 0 2.6rem; max-width:54ch;
+  border-left:3px solid var(--brass); padding:.15rem 0 .3rem 1.5rem;
+}
+.hero__founder blockquote{
+  margin:0; font-family:var(--serif-disp); font-weight:400; font-style:italic;
+  font-size:clamp(1.35rem, 3.1vw, 2.15rem); line-height:1.18; color:#fff;
+}
+.hero__founder figcaption{
+  margin-top:.95rem; font-family:var(--mono); font-size:.78rem; letter-spacing:.02em;
+  color:var(--brass); line-height:1.5; max-width:52ch;
+}
+
+/* ---------- live map embed ---------- */
+.map__lead{max-width:62ch; color:#C7CEE0; font-size:1.12rem; margin:0 0 2rem}
+.map__frame{
+  position:relative; border:1px solid var(--ink-line); border-radius:8px; overflow:hidden;
+  aspect-ratio:16/9; background:var(--navy); box-shadow:0 8px 24px -18px rgba(0,0,0,.6);
+}
+.map__frame iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+.map__foot{margin:1.2rem 0 0; font-family:var(--mono); font-size:.85rem; color:#C7CEE0}
+.map__foot a{color:var(--brass); text-decoration:none}
+.map__foot a:hover{text-decoration:underline}
+@media (max-width:680px){ .map__frame{aspect-ratio:3/4} }
+
 /* reticle brackets around hero headline */
 .reticle{position:relative; display:inline-block; padding:1.4rem 1.7rem; margin-top:.4rem}
 .reticle::before,.reticle::after{
@@ -379,6 +405,7 @@ a:focus-visible,.btn:focus-visible,.act__card:focus-visible,.nav__toggle:focus-v
   </a>
   <nav class="nav__links" aria-label="Sections">
     <a href="#problem">The problem</a>
+    <a href="#map">The map</a>
     <a href="#principle">The principle</a>
     <a href="#plan">The plan</a>
     <a href="#act" class="nav__cta">Take action</a>
@@ -390,14 +417,18 @@ a:focus-visible,.btn:focus-visible,.act__card:focus-visible,.nav__toggle:focus-v
 <section class="hero">
   <div class="scanline" aria-hidden="true"></div>
   <div class="hero__inner">
-    <p class="eyebrow eyebrow--gold">GREENVILLE COUNTY, SC &nbsp;·&nbsp; 57 CAMERAS ONLINE &nbsp;·&nbsp; 0 PUBLIC VOTES</p>
+    <p class="eyebrow eyebrow--gold">UPSTATE SOUTH CAROLINA &nbsp;·&nbsp; 400+ CAMERAS MAPPED &nbsp;·&nbsp; 0 PUBLIC VOTES</p>
     <div class="reticle">
       <h1 class="hero__title">A standing army<br>of cameras is watching<br>every car you drive.</h1>
     </div>
     <p class="hero__sub">Flock's automated license-plate readers photograph, tag, and store the movements of every driver in the Upstate — no suspicion, no warrant, no vote. It is the same general search the founders went to war to abolish, rebuilt with AI and made permanent.</p>
+    <figure class="hero__founder reveal">
+      <blockquote>Then and there the child Independence was born.</blockquote>
+      <figcaption>John Adams, on James Otis's 1761 stand against the general search &mdash; the fight the founders would not abandon</figcaption>
+    </figure>
     <div class="hero__cta">
       <a class="btn btn--primary" href="#act">Take action &rarr;</a>
-      <a class="btn btn--ghost" href="https://deflock.org/" target="_blank" rel="noopener">See the cameras near you</a>
+      <a class="btn btn--ghost" href="https://maps.deflock.org/?lat=34.8308&lng=-82.3894&zoom=10.43" target="_blank" rel="noopener">See the cameras near you</a>
     </div>
   </div>
 </section>
@@ -451,14 +482,27 @@ a:focus-visible,.btn:focus-visible,.act__card:focus-visible,.nav__toggle:focus-v
 <section class="section section--ink" id="here">
   <div class="wrap">
     <p class="eyebrow eyebrow--gold">[ THIS IS ALREADY HERE ]</p>
-    <h2 class="h2 h2--light">It's happening in Greenville — right now</h2>
+    <h2 class="h2 h2--light">It's happening across the Upstate — right now</h2>
     <div class="stats">
-      <div class="stat reveal"><span class="stat__num" data-count="57">0</span><span class="stat__label">Flock cameras run by Greenville PD</span></div>
-      <div class="stat reveal"><span class="stat__num" data-count="0">0</span><span class="stat__label">public council votes on an oversight ordinance</span></div>
-      <div class="stat reveal"><span class="stat__num" data-count="2021" data-plain="true">2021</span><span class="stat__label">the year cameras first went up, quietly</span></div>
-      <div class="stat reveal"><span class="stat__num"><span class="stat__tilde">~</span><span data-count="50">0</span></span><span class="stat__label">SC agencies using ALPRs — SLED, Highway Patrol, Clemson &amp; Furman among them</span></div>
+      <div class="stat reveal"><span class="stat__num" data-count="400" data-suffix="+">0</span><span class="stat__label">ALPR cameras mapped across the Upstate — nearly all of them Flock</span></div>
+      <div class="stat reveal"><span class="stat__num" data-count="100" data-suffix="M+">0</span><span class="stat__label">vehicle photos SLED captures on SC roads every year</span></div>
+      <div class="stat reveal"><span class="stat__num"><span class="stat__tilde">~</span><span data-count="100">0</span></span><span class="stat__label">agencies that can query the data — SLED, Highway Patrol &amp; even ICE among them</span></div>
+      <div class="stat reveal"><span class="stat__num" data-count="0">0</span><span class="stat__label">public votes ever taken to authorize any of it</span></div>
     </div>
-    <p class="ink-note">Greenville's first cameras were bought with <strong>$22,000 in federal civil-asset-forfeiture money</strong> — funds that bypassed the normal council budget. Five years on, there are still no public rules on who sees the data, how long it is kept, or whether anyone audits its use.</p>
+    <p class="ink-note">DeFlock's crowdsourced map already logs <strong>more than 400 ALPR cameras across the Upstate</strong> — the overwhelming majority of them Flock. Greenville's first were bought with <strong>$22,000 in federal civil-asset-forfeiture money</strong> that bypassed the normal council budget. Statewide, SLED's &ldquo;Back Office&rdquo; database holds roughly <strong>400 million</strong> time-stamped, geolocated plate images, kept for three years — and there are still no public rules on who sees the data or whether anyone audits its use.</p>
+  </div>
+</section>
+
+<!-- ============ LIVE MAP ============ -->
+<section class="section section--ink section--tight" id="map">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--gold">[ SEE IT FOR YOURSELF ]</p>
+    <h2 class="h2 h2--light">The cameras watching the Upstate — live</h2>
+    <p class="map__lead">Every dot is an automated license-plate reader logged on DeFlock's crowdsourced map. Pan and zoom to find the readers on your own street.</p>
+    <div class="map__frame">
+      <iframe src="https://maps.deflock.org/?lat=34.8308&amp;lng=-82.3894&amp;zoom=10.43" title="DeFlock live ALPR camera map — Upstate South Carolina" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <p class="map__foot"><a href="https://maps.deflock.org/?lat=34.8308&amp;lng=-82.3894&amp;zoom=10.43" target="_blank" rel="noopener">Open the full interactive map at maps.deflock.org &rarr;</a></p>
   </div>
 </section>
 
@@ -490,7 +534,7 @@ a:focus-visible,.btn:focus-visible,.act__card:focus-visible,.nav__toggle:focus-v
   <div class="wrap">
     <p class="eyebrow eyebrow--gold">[ THE FOUNDING PRINCIPLE ]</p>
     <h2 class="display display--xl">The founders fought a war over this exact thing.</h2>
-    <p class="divider__sub">The general, suspicionless search was not a footnote to the Revolution. John Adams called the fight against it the moment <em>&ldquo;the child Independence was born.&rdquo;</em></p>
+    <p class="divider__sub">The general, suspicionless search was not a footnote to the Revolution — it was the spark. James Otis spent five hours arguing against it before a Boston court in 1761; a young John Adams sat watching, and <em>marked that day as the birth of American independence.</em></p>
   </div>
 </section>
 
@@ -647,8 +691,8 @@ a:focus-visible,.btn:focus-visible,.act__card:focus-visible,.nav__toggle:focus-v
       <a class="act__card" href="https://www.greenvillecounty.org/CountyCouncil/" target="_blank" rel="noopener">
         <span class="act__k">03</span><h3>Email county council</h3><p>Same lever at the county level — for the Sheriff's Office and county facilities.</p><span class="act__go">greenvillecounty.org &rarr;</span>
       </a>
-      <a class="act__card" href="https://deflock.org/" target="_blank" rel="noopener">
-        <span class="act__k">04</span><h3>Map the cameras</h3><p>See exactly where the readers are watching your street on DeFlock's live map.</p><span class="act__go">deflock.org &rarr;</span>
+      <a class="act__card" href="https://maps.deflock.org/?lat=34.8308&lng=-82.3894&zoom=10.43" target="_blank" rel="noopener">
+        <span class="act__k">04</span><h3>Map the cameras</h3><p>See exactly where the readers are watching your street on DeFlock's live map.</p><span class="act__go">maps.deflock.org &rarr;</span>
       </a>
       <a class="act__card" href="https://eyesoffgsp.org/" target="_blank" rel="noopener">
         <span class="act__k">05</span><h3>Join the local group</h3><p>Eyes Off GSP is already organizing across Greenville &amp; Spartanburg. You're not starting from scratch.</p><span class="act__go">eyesoffgsp.org &rarr;</span>
