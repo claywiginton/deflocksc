@@ -119,25 +119,57 @@
     return Object.assign({ level: "city", cityName: cityName }, rep, { district: rep.district || d });
   }
 
-  /* ---- email drafting ---- */
+  /* ---- personalizer (the light "make it yours" fields) ---- */
+  var pf = {
+    name: document.getElementById("rfName"),
+    hood: document.getElementById("rfHood"),
+    why: document.getElementById("rfWhy"),
+  };
+  function pName() { var v = pf.name && pf.name.value.trim(); return v || "[Your name]"; }
+  function pHood() { var v = pf.hood && pf.hood.value.trim(); return v || "my neighborhood"; }
+  function pWhy() { return (pf.why && pf.why.value.trim()) || ""; }
   function esc(s) { return encodeURIComponent(s); }
-  function draft(rep) {
-    var name = rep.name || "Representative";
-    var s, b;
-    if (rep.level === "county") {
-      s = "Please put ALPR surveillance oversight on the agenda";
-      b = "Dear " + name + ",\n\nI'm a resident of your district (" + (rep.districtLabel || ("District " + rep.district)) + "). There are now more than 400 automated license-plate reader cameras across the Upstate logging where every driver goes — with no public vote, no warrant requirement, and no published rules on who can search the data.\n\nI'm asking the Council to adopt an ALPR oversight ordinance: a public vote before any program, a warrant for searches, a 21-day retention limit, published audits, and no use for immigration enforcement.\n\nWill you support this and help bring it to an agenda?\n\nThank you,\n[Your name]\n[Your address]";
-    } else if (rep.level === "city") {
-      var city = rep.cityName || "our city";
-      s = "Oversight before " + city + " expands license-plate surveillance";
-      b = "Dear " + name + ",\n\nI'm a resident of " + city + " and your constituent. Automated license-plate reader (ALPR) cameras log where every driver goes, yet there has been no public hearing on the rules — who can search the data, how long our movements are stored, or how errors are handled." + (/greenville/i.test(city) ? " Two local sisters were held at gunpoint over a false hit and are now suing." : "") + "\n\nBefore our city adopts or renews any ALPR contract, please hold a public hearing and put oversight in place — a warrant requirement, a short retention limit, published audits, and no immigration or out-of-state bulk sharing.\n\nThank you,\n[Your name]\n[Your address]";
-    } else {
-      var role = rep.level === "senate" ? "Senator" : "Representative";
-      s = "Please champion the Community Data Protection Act (H.4675)";
-      b = "Dear " + role + " " + name + ",\n\nI'm a constituent in your district. I support H.4675, the South Carolina Community Data Protection and Responsible Surveillance Act — it keeps license-plate data on in-state government servers, caps retention at 21 days, bars AI vehicle-feature tracking, prohibits use for immigration and routine traffic enforcement, and requires independent audits.\n\nThe bill didn't clear before the session ended. Please re-file or co-sponsor it in the 2027 session and help recruit a partner in the other chamber.\n\nMass license-plate surveillance is the modern general warrant — the exact abuse the Fourth Amendment was written to forbid. Can I count on your leadership?\n\nThank you,\n[Your name]\n[Your address]";
-    }
-    return { subject: s, body: b };
+
+  /* ---- the specific ask, per level ---- */
+  function askFor(rep) {
+    if (rep.level === "county") return "adopt a local ordinance requiring a public vote, a warrant for searches, a 21-day data limit, and published audits before any license-plate cameras operate";
+    if (rep.level === "city") return "hold a public hearing and put real oversight in place before the city adopts or renews any Flock camera contract";
+    return "re-file and support H.4675, the South Carolina Community Data Protection Act, in the 2027 session";
   }
+  function greet(rep) {
+    if (rep.level === "senate") return "Senator " + rep.name;
+    if (rep.level === "house") return "Representative " + rep.name;
+    return rep.name;
+  }
+  function callTitle(rep) {
+    if (rep.level === "senate") return "Senator " + rep.name;
+    if (rep.level === "house") return "Representative " + rep.name;
+    return "Councilmember " + rep.name;
+  }
+
+  /* ---- personalized email (built fresh so it reflects the current fields) ---- */
+  function draft(rep) {
+    var subj = rep.level === "county" ? "Please put ALPR surveillance oversight on the agenda"
+      : rep.level === "city" ? "A public hearing before " + (rep.cityName || "our city") + " expands license-plate surveillance"
+      : "Please champion the Community Data Protection Act (H.4675)";
+    var why = pWhy();
+    var opener = "My name is " + pName() + " and I live in " + pHood() + "." + (why ? " " + why : "");
+    var close = (rep.level === "senate" || rep.level === "house")
+      ? "Mass license-plate surveillance is the modern general warrant — the exact search the Fourth Amendment was written to forbid. Can I count on your leadership?"
+      : "This is exactly the un-voted, unaccountable surveillance a free community should refuse. Can I count on your support?";
+    var body = "Dear " + greet(rep) + ",\n\n" + opener + "\n\nI'm asking you to " + askFor(rep) + ".\n\n" + close + "\n\nThank you,\n" + pName() + "\n" + pHood();
+    return { subject: subj, body: body };
+  }
+
+  /* ---- call script (built fresh from the same fields) ---- */
+  function script(rep) {
+    var why = pWhy();
+    return "Hi, my name is " + pName() + " and I'm a constituent in " + pHood() + ".\n\n" +
+      "I'm calling to ask " + callTitle(rep) + " to " + askFor(rep) + ".\n\n" +
+      (why ? why + "\n\n" : "") +
+      "Can I count on their support? Thank you.";
+  }
+  function htmlesc(s) { return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
 
   /* ---- rendering ---- */
   var LEVELS = {
@@ -156,24 +188,38 @@
         '<p class="rf__meta">District ' + rep.district + ' — no sitting member listed.</p>';
       return el;
     }
-    var d = draft(rep);
+    var tel = rep.phone ? rep.phone.replace(/[^0-9+]/g, "") : null;
     var contact = [];
+    if (rep.phone) contact.push('<a href="tel:' + tel + '">' + rep.phone + '</a>');
     if (rep.email) contact.push('<a href="mailto:' + rep.email + '">' + rep.email + '</a>');
-    if (rep.phone) contact.push('<a href="tel:' + rep.phone.replace(/[^0-9+]/g, "") + '">' + rep.phone + '</a>');
     if (rep.website) contact.push('<a href="' + rep.website + '" target="_blank" rel="noopener">official page ↗</a>');
-    var mailto = rep.email ? 'mailto:' + rep.email + '?subject=' + esc(d.subject) + '&body=' + esc(d.body) : null;
+    var actions = '<div class="rf__actions">';
+    if (tel) actions += '<a class="btn btn--primary" href="tel:' + tel + '">Call ' + firstName(rep.name) + '</a><button class="btn btn--line rf__scriptbtn" type="button">Call script</button>';
+    if (rep.email) actions += '<button class="btn ' + (tel ? 'btn--line' : 'btn--primary') + ' rf__emailbtn" type="button">Write email</button>';
+    actions += '</div>';
     el.innerHTML =
       '<p class="rf__level">' + headline + '</p>' +
       '<h3>' + rep.name + '</h3>' +
       '<p class="rf__meta">' + (rep.title ? rep.title : "District " + rep.district) + (rep.party ? ' · ' + rep.party : '') + '</p>' +
       '<p class="rf__contact">' + (contact.join(' &nbsp;·&nbsp; ') || 'Contact via the official page') + '</p>' +
-      '<div class="rf__actions">' +
-        (mailto ? '<a class="btn btn--primary" href="' + mailto + '">Email ' + firstName(rep.name) + ' ✉</a>' : '') +
-        '<button class="btn btn--line rf__copy" type="button">Copy email</button>' +
-      '</div>';
-    el.querySelector(".rf__copy").addEventListener("click", function (e) {
-      var btn = e.currentTarget;
-      copyText(d.subject + "\n\n" + d.body, btn);
+      actions +
+      '<div class="rf__script"></div>';
+    var panel = el.querySelector(".rf__script");
+    var sb = el.querySelector(".rf__scriptbtn");
+    if (sb) sb.addEventListener("click", function () {
+      var t = script(rep);
+      panel.innerHTML = '<pre>' + htmlesc(t) + '</pre><button class="tmpl__copy" type="button">Copy script</button>';
+      panel.classList.add("show");
+      panel.querySelector(".tmpl__copy").addEventListener("click", function (e) { copyText(t, e.currentTarget); });
+    });
+    var eb = el.querySelector(".rf__emailbtn");
+    if (eb) eb.addEventListener("click", function () {
+      var d = draft(rep);
+      var mailto = 'mailto:' + rep.email + '?subject=' + esc(d.subject) + '&body=' + esc(d.body);
+      panel.innerHTML = '<pre>' + htmlesc(d.subject + "\n\n" + d.body) + '</pre>' +
+        '<a class="btn btn--primary" href="' + mailto + '" style="font-size:.72rem;padding:.5rem .9rem">Open in email ✉</a> <button class="tmpl__copy" type="button">Copy</button>';
+      panel.classList.add("show");
+      panel.querySelector(".tmpl__copy").addEventListener("click", function (e) { copyText(d.subject + "\n\n" + d.body, e.currentTarget); });
     });
     return el;
   }
@@ -195,23 +241,49 @@
       banner.innerHTML = "◎ DeFlock has already mapped <strong>" + n + " ALPR camera" + (n === 1 ? "" : "s") + "</strong> in " + cname + " County — not one put to a public vote. These are the people who can change that:";
       resultsEl.appendChild(banner);
     }
+    var prio = document.createElement("p");
+    prio.className = "rf__priority";
+    prio.innerHTML = "What actually works, in order: <strong>1) call</strong> &nbsp; <strong>2) show up</strong> at a meeting &nbsp; <strong>3) a message in your own words</strong>. A form email everyone sends gets tallied as one voice — so add your name and reason above, and each message becomes yours.";
+    resultsEl.appendChild(prio);
+
     if (res.county && res.county.rep) { resultsEl.appendChild(card(labelCounty(res.county), (res.county.label || "County Council"))); any = true; }
     if (res.city && res.city.reps && res.city.reps.length) {
       res.city.reps.forEach(function (r) { resultsEl.appendChild(card(r, res.city.label || "City Council")); });
       any = true;
     }
+    if (res.county && res.county.rep) resultsEl.appendChild(showUp(res.countyId));
     if (res.state.senate) { resultsEl.appendChild(card(res.state.senate, "SC Senate — District " + res.state.senate.district)); any = true; }
     if (res.state.house) { resultsEl.appendChild(card(res.state.house, "SC House — District " + res.state.house.district)); any = true; }
     if (!res.county && res.state.senate) {
       var note = document.createElement("p");
       note.className = "rf__note";
-      note.textContent = "Your county council isn't in our Upstate data set yet — your state legislators are shown above, and you can reach your county directly via its official site.";
+      note.textContent = "Your county council isn't in our data set — your state legislators are shown above, and you can reach your county directly via its official site.";
       resultsEl.appendChild(note);
     }
     if (!any) setStatus("We couldn't match that location to South Carolina districts. Check the address and try again.", true);
-    else { setStatus("Here are the people who can act — email is pre-written; add one sentence of your own and send."); resultsEl.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+    else { setStatus("Start with a call or a council meeting — email is the backup. Fill in your name and one reason above and every message becomes unmistakably yours."); resultsEl.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
   }
   function labelCounty(c) { var r = c.rep; r.districtLabel = c.label + " District " + r.district; return r; }
+  function showUp(countyId) {
+    var label = (reps.counties[countyId] && reps.counties[countyId].label) || "your county council";
+    var cname = label.replace(/ Council$/, "");
+    var meeting = countyId === "greenville"
+      ? "Greenville County Council meets the <strong>1st &amp; 3rd Tuesday</strong> at County Square, 301 University Ridge — with a public-comment period."
+      : cname + " meets on a published schedule with a public-comment period — find the next date and sign-up on the county's official website.";
+    var el = document.createElement("div");
+    el.className = "rf__showup";
+    el.innerHTML =
+      '<p class="k">The single most powerful move</p>' +
+      '<h4>Show up — three minutes at the podium</h4>' +
+      '<p>A handful of residents at public comment can move a local vote. ' + meeting + '</p>' +
+      '<ol>' +
+        "<li><strong>Say you're a constituent</strong> — your name and where you live.</li>" +
+        '<li><strong>Give one real reason</strong> it matters to you (the line you wrote above works).</li>' +
+        '<li><strong>Make the specific ask</strong> — a public vote, a warrant, a 21-day data limit, and audits before any camera runs.</li>' +
+        '<li><strong>Keep it under three minutes, stay civil, and bring a neighbor.</strong></li>' +
+      '</ol>';
+    return el;
+  }
 
   function run(lat, lng) {
     if (!inBBox(lat, lng, SC_BBOX)) { setStatus("That location looks outside South Carolina. This tool covers SC districts.", true); return; }

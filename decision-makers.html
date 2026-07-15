@@ -57,13 +57,22 @@
   <div class="wrap">
     <p class="eyebrow">[ FIND &amp; CONTACT YOUR REP ]</p>
     <h2 class="h2">Who represents you — and how to reach them</h2>
-    <p class="section__lead">Type your address (or tap <strong>Use my location</strong>) and we'll match your <strong>state, county, and city</strong> representatives — each with a ready-to-send email. It all runs in your browser; your address is never sent to us.</p>
+    <p class="section__lead">Type your address (or tap <strong>Use my location</strong>). We'll match your <strong>state, county, and city</strong> representatives — then help you do the thing that actually changes their minds: a quick <strong>call</strong>, or a message <strong>in your own words</strong>. It all runs in your browser; your address is never sent to us.</p>
     <div class="rf">
       <form id="rfForm" class="rf__form" autocomplete="off">
         <input id="rfAddr" class="rf__input" type="text" placeholder="123 Main St, Greenville, SC 29601" aria-label="Your home address" />
         <button class="btn btn--primary" type="submit">Find my representatives</button>
         <button class="btn rf__geo" type="button" id="rfGeo">Use my location</button>
       </form>
+      <div class="rf__me">
+        <p class="rf__me-h">Make it yours — 30 seconds (this is what makes it count)</p>
+        <div class="rf__me-grid">
+          <input id="rfName" class="rf__input" type="text" placeholder="Your name" autocomplete="name" />
+          <input id="rfHood" class="rf__input" type="text" placeholder="Your neighborhood or town" />
+          <input id="rfWhy" class="rf__input rf__why" type="text" placeholder="One line — why does this matter to you? (e.g. I pass a camera on Woodruff Rd every day)" />
+        </div>
+        <p class="rf__menote">A 20-second phone call — or a message in your own words — counts for far more than a form email, which offices tally as a single voice. These three lines make everything you send unmistakably real.</p>
+      </div>
       <div id="rfStatus" class="rf__status" role="status" aria-live="polite"></div>
       <div id="rfResults" class="rf__results"></div>
       <p class="rf__credit">Runs entirely in your browser — your address never leaves your device. District maps &amp; current rosters via <a href="https://www.npmjs.com/package/open-civics" target="_blank" rel="noopener">open-civics</a> (MIT, © Tim Simpson / DeflockSC); camera counts from <a href="https://deflock.org" target="_blank" rel="noopener">DeFlock</a>; address search by <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Always confirm a member before sending.</p>

@@ -655,3 +655,33 @@ details.acc[open]>summary::after{content:"\2013"}
 .links a{color:var(--navy); font-weight:500; text-decoration:none}
 .links a:hover{color:var(--crimson); text-decoration:underline}
 .links span{display:block; color:var(--slate); font-size:.82rem; font-weight:400}
+
+/* ---------- rep-finder: personalizer + effective-contact flow ---------- */
+.rf__me{margin:1.1rem 0 0; background:var(--parch); border:1px solid var(--brass); border-radius:8px; padding:1.1rem 1.3rem}
+.rf__me-h{margin:0 0 .7rem; font-family:var(--mono); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:#8A1F2E}
+.rf__me-grid{display:grid; grid-template-columns:1fr 1fr; gap:.6rem}
+.rf__me-grid .rf__why{grid-column:1/-1}
+.rf__me .rf__input{background:#fff}
+.rf__menote{margin:.8rem 0 0; font-family:var(--serif); font-style:italic; color:#5a4a24; font-size:.9rem; line-height:1.5}
+
+.rf__priority{grid-column:1/-1; margin:.2rem 0 .3rem; font-family:var(--mono); font-size:.8rem; letter-spacing:.02em; color:var(--slate); line-height:1.5}
+.rf__priority strong{color:var(--crimson)}
+
+.rf__panel{grid-column:1/-1}
+.rf__actions{display:flex; gap:.5rem; flex-wrap:wrap; align-items:center}
+.rf__actions .btn{font-size:.8rem; padding:.55rem .95rem}
+.rf__script{margin:.9rem 0 0; background:var(--navy); color:#fff; border-radius:6px; padding:1rem 1.15rem; display:none}
+.rf__script.show{display:block}
+.rf__script pre{margin:0 0 .7rem; white-space:pre-wrap; font-family:var(--sans); font-size:.92rem; line-height:1.5; color:#EDEFF6}
+.rf__script .tmpl__copy{position:static; font-size:.68rem}
+.rf__more{font-family:var(--mono); font-size:.78rem; color:var(--slate)}
+
+/* show-up (public comment) panel */
+.rf__showup{grid-column:1/-1; margin:.4rem 0 0; background:#141C33; border:1px solid var(--ink-line); border-left:4px solid var(--brass); border-radius:8px; padding:1.4rem 1.6rem; color:#fff}
+.rf__showup h4{font-family:var(--serif-disp); font-weight:400; font-size:1.4rem; color:#fff; margin:0 0 .3rem}
+.rf__showup .k{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--brass); margin:0 0 .7rem}
+.rf__showup p{margin:0 0 .7rem; color:#DCE1EF; font-size:.95rem; line-height:1.5}
+.rf__showup ol{margin:.2rem 0 0; padding-left:1.2rem; color:#DCE1EF}
+.rf__showup li{margin:0 0 .5rem; line-height:1.45}
+.rf__showup li strong{color:#fff}
+@media (max-width:680px){ .rf__me-grid{grid-template-columns:1fr} }
