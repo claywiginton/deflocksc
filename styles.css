@@ -657,7 +657,7 @@ details.acc[open]>summary::after{content:"\2013"}
 .links span{display:block; color:var(--slate); font-size:.82rem; font-weight:400}
 
 /* ---------- rep-finder: personalizer + effective-contact flow ---------- */
-.rf__me{margin:1.1rem 0 0; background:var(--parch); border:1px solid var(--brass); border-radius:8px; padding:1.1rem 1.3rem}
+.rf__me{grid-column:1/-1; margin:0; background:var(--parch); border:1px solid var(--brass); border-radius:8px; padding:1.1rem 1.3rem}
 .rf__me-h{margin:0 0 .7rem; font-family:var(--mono); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:#8A1F2E}
 .rf__me-grid{display:grid; grid-template-columns:1fr 1fr; gap:.6rem}
 .rf__me-grid .rf__why{grid-column:1/-1}

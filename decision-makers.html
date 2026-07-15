@@ -27,9 +27,9 @@
   <nav class="nav__links" aria-label="Sections">
     <a href="index.html">&larr; Home</a>
     <a href="#find">Find your rep</a>
+    <a href="#showup">Show up</a>
     <a href="#map">Who decides</a>
     <a href="#bills">The bills</a>
-    <a href="#plan">The plan</a>
     <a href="#find" class="nav__cta">Contact them</a>
   </nav>
   <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -46,8 +46,8 @@
     </div>
     <p class="hero__sub">A campaign wins or loses on whether it reaches the handful of people who can flip the switch. In the Upstate, that's a short, knowable list — county councils, city councils, sheriffs, and a few state legislators. Here's who they are, what moves them, and exactly how to get the ball rolling.</p>
     <div class="hero__cta">
-      <a class="btn btn--primary" href="#find">Find your representative &rarr;</a>
-      <a class="btn btn--ghost" href="#tools">Jump to the templates</a>
+      <a class="btn btn--primary" href="#find">Find your representatives &rarr;</a>
+      <a class="btn btn--ghost" href="#showup">Show up at a meeting</a>
     </div>
   </div>
 </section>
@@ -57,22 +57,13 @@
   <div class="wrap">
     <p class="eyebrow">[ FIND &amp; CONTACT YOUR REP ]</p>
     <h2 class="h2">Who represents you — and how to reach them</h2>
-    <p class="section__lead">Type your address (or tap <strong>Use my location</strong>). We'll match your <strong>state, county, and city</strong> representatives — then help you do the thing that actually changes their minds: a quick <strong>call</strong>, or a message <strong>in your own words</strong>. It all runs in your browser; your address is never sent to us.</p>
+    <p class="section__lead"><strong>Start here.</strong> Enter your address (or tap <strong>Use my location</strong>) to see your state, county, and city representatives — each with the most effective ways to reach them. It all runs in your browser; your address is never sent to us.</p>
     <div class="rf">
       <form id="rfForm" class="rf__form" autocomplete="off">
         <input id="rfAddr" class="rf__input" type="text" placeholder="123 Main St, Greenville, SC 29601" aria-label="Your home address" />
         <button class="btn btn--primary" type="submit">Find my representatives</button>
         <button class="btn rf__geo" type="button" id="rfGeo">Use my location</button>
       </form>
-      <div class="rf__me">
-        <p class="rf__me-h">Make it yours — 30 seconds (this is what makes it count)</p>
-        <div class="rf__me-grid">
-          <input id="rfName" class="rf__input" type="text" placeholder="Your name" autocomplete="name" />
-          <input id="rfHood" class="rf__input" type="text" placeholder="Your neighborhood or town" />
-          <input id="rfWhy" class="rf__input rf__why" type="text" placeholder="One line — why does this matter to you? (e.g. I pass a camera on Woodruff Rd every day)" />
-        </div>
-        <p class="rf__menote">A 20-second phone call — or a message in your own words — counts for far more than a form email, which offices tally as a single voice. These three lines make everything you send unmistakably real.</p>
-      </div>
       <div id="rfStatus" class="rf__status" role="status" aria-live="polite"></div>
       <div id="rfResults" class="rf__results"></div>
       <p class="rf__credit">Runs entirely in your browser — your address never leaves your device. District maps &amp; current rosters via <a href="https://www.npmjs.com/package/open-civics" target="_blank" rel="noopener">open-civics</a> (MIT, © Tim Simpson / DeflockSC); camera counts from <a href="https://deflock.org" target="_blank" rel="noopener">DeFlock</a>; address search by <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Always confirm a member before sending.</p>
@@ -85,6 +76,43 @@
         <a class="btn btn--line" href="#tools">Email templates &rarr;</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ SHOW UP ============ -->
+<section class="section section--paper section--tight" id="showup">
+  <div class="wrap">
+    <p class="eyebrow">[ THE MOST POWERFUL THING YOU CAN DO ]</p>
+    <h2 class="h2">Show up — here's exactly where to go and what to say</h2>
+    <p class="section__lead">A handful of residents at public comment can move a local vote. It takes three minutes and no experience. Pick a meeting, sign up, and read the short statement below.</p>
+    <div class="who">
+      <article class="who__card who__card--now reveal">
+        <p class="who__role">Fastest lever</p>
+        <h3>Greenville County Council</h3>
+        <p class="who__who">Controls the Sheriff's cameras &amp; county surveillance spending</p>
+        <dl>
+          <div class="who__row"><dt>When</dt><dd><strong>1st &amp; 3rd Tuesday</strong>, 6:00&nbsp;p.m.</dd></div>
+          <div class="who__row"><dt>Where</dt><dd>Council Chambers, County Square — <strong>301 University Ridge</strong>, Greenville (North building)</dd></div>
+          <div class="who__row"><dt>To speak</dt><dd>Sign up for public comment online from <strong>4:45&nbsp;p.m. the Monday before</strong> until 4:45&nbsp;p.m. on meeting day, then check in when you arrive. <a href="https://www.greenvillecounty.org/Council/" target="_blank" rel="noopener">County Council site ↗</a></dd></div>
+        </dl>
+      </article>
+      <article class="who__card who__card--now reveal">
+        <p class="who__role">City of Greenville</p>
+        <h3>Greenville City Council</h3>
+        <p class="who__who">Controls the Greenville PD Flock contract</p>
+        <dl>
+          <div class="who__row"><dt>When</dt><dd><strong>2nd &amp; 4th Monday</strong> — formal meeting 5:30&nbsp;p.m.</dd></div>
+          <div class="who__row"><dt>Where</dt><dd>Council Chambers, 10th floor, City Hall — <strong>206 S. Main St.</strong>, Greenville</dd></div>
+          <div class="who__row"><dt>To speak</dt><dd>Contact the City Clerk by <strong>noon on meeting day</strong> with your name and the agenda item: (864)&nbsp;467-4441 or <a href="mailto:cpitman@greenvillesc.gov">cpitman@greenvillesc.gov</a>. <a href="https://www.greenvillesc.gov/city-council" target="_blank" rel="noopener">City Council site ↗</a></dd></div>
+        </dl>
+      </article>
+    </div>
+    <div class="leadbox" style="margin-top:1.4rem">
+      <p class="leadbox__tag">What to say — a 60-second script</p>
+      <p style="font-family:var(--serif); font-style:italic; font-size:1.08rem; color:#3A2E12; line-height:1.5; margin:0">&ldquo;My name is <span class="fill">[your name]</span> and I live in <span class="fill">[your neighborhood]</span>. I'm asking the Council to require a public vote, a warrant, a 21-day data limit, and published audits before any license-plate cameras operate here. <span class="fill">[One sentence — why this matters to you.]</span> These cameras went up with no vote; please give the public a say. Thank you.&rdquo;</p>
+      <p style="margin:1rem 0 0; color:#3A2E12">Then just remember: <strong>stay under three minutes, be civil, and bring a neighbor.</strong> A room with five calm constituents changes how a council votes.</p>
+    </div>
+    <p class="honest">Not in Greenville? Your county and city hold public-comment periods too — <a href="#find" style="color:var(--crimson)">find your officials above</a>, then check your council's official site for its schedule and sign-up.</p>
   </div>
 </section>
 

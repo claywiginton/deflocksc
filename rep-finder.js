@@ -119,15 +119,23 @@
     return Object.assign({ level: "city", cityName: cityName }, rep, { district: rep.district || d });
   }
 
-  /* ---- personalizer (the light "make it yours" fields) ---- */
-  var pf = {
-    name: document.getElementById("rfName"),
-    hood: document.getElementById("rfHood"),
-    why: document.getElementById("rfWhy"),
-  };
-  function pName() { var v = pf.name && pf.name.value.trim(); return v || "[Your name]"; }
-  function pHood() { var v = pf.hood && pf.hood.value.trim(); return v || "my neighborhood"; }
-  function pWhy() { return (pf.why && pf.why.value.trim()) || ""; }
+  /* ---- personalizer (the light "make it yours" fields, injected with results) ---- */
+  function fieldVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+  function pName() { return fieldVal("rfName") || "[Your name]"; }
+  function pHood() { return fieldVal("rfHood") || "my neighborhood"; }
+  function pWhy() { return fieldVal("rfWhy"); }
+  function personalizerEl() {
+    var me = document.createElement("div");
+    me.className = "rf__me";
+    me.innerHTML =
+      '<p class="rf__me-h">Make these messages yours — 30 seconds (this is what makes them count)</p>' +
+      '<div class="rf__me-grid">' +
+        '<input id="rfName" class="rf__input" type="text" placeholder="Your name" autocomplete="name" />' +
+        '<input id="rfHood" class="rf__input" type="text" placeholder="Your neighborhood or town" />' +
+        '<input id="rfWhy" class="rf__input rf__why" type="text" placeholder="One line — why does this matter to you? (e.g. I pass a camera on Woodruff Rd every day)" />' +
+      '</div>';
+    return me;
+  }
   function esc(s) { return encodeURIComponent(s); }
 
   /* ---- the specific ask, per level ---- */
@@ -241,9 +249,11 @@
       banner.innerHTML = "◎ DeFlock has already mapped <strong>" + n + " ALPR camera" + (n === 1 ? "" : "s") + "</strong> in " + cname + " County — not one put to a public vote. These are the people who can change that:";
       resultsEl.appendChild(banner);
     }
+    resultsEl.appendChild(personalizerEl());
+
     var prio = document.createElement("p");
     prio.className = "rf__priority";
-    prio.innerHTML = "What actually works, in order: <strong>1) call</strong> &nbsp; <strong>2) show up</strong> at a meeting &nbsp; <strong>3) a message in your own words</strong>. A form email everyone sends gets tallied as one voice — so add your name and reason above, and each message becomes yours.";
+    prio.innerHTML = "What actually works, in order: <strong>1) call</strong> &nbsp; <strong>2) show up</strong> at a meeting &nbsp; <strong>3) a message in your own words</strong>. A form email everyone sends gets tallied as one voice — so fill in your name and reason above, and each message becomes yours.";
     resultsEl.appendChild(prio);
 
     if (res.county && res.county.rep) { resultsEl.appendChild(card(labelCounty(res.county), (res.county.label || "County Council"))); any = true; }
