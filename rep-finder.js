@@ -12,7 +12,7 @@
   "use strict";
 
   var SC_BBOX = [-83.36, 32.03, -78.55, 35.22]; // lng/lat min/max
-  var registry = null, reps = null, geoCache = {};
+  var registry = null, reps = null, cameras = null, geoCache = {};
 
   var form = document.getElementById("rfForm");
   if (!form) return; // widget not on this page
@@ -34,8 +34,11 @@
   }
   function ensureData() {
     if (registry && reps) return Promise.resolve();
-    return Promise.all([loadJSON("data/registry.json"), loadJSON("data/reps.json")])
-      .then(function (a) { registry = a[0]; reps = a[1]; });
+    return Promise.all([
+      loadJSON("data/registry.json"),
+      loadJSON("data/reps.json"),
+      loadJSON("data/camera-counts.json").catch(function () { return null; }),
+    ]).then(function (a) { registry = a[0]; reps = a[1]; cameras = a[2]; });
   }
   function loadLayer(file) {
     if (geoCache[file]) return Promise.resolve(geoCache[file]);
@@ -184,6 +187,14 @@
   function render(res) {
     resultsEl.innerHTML = "";
     var any = false;
+    if (res.countyId && cameras && cameras["county:" + res.countyId] != null) {
+      var n = cameras["county:" + res.countyId];
+      var cname = ((reps.counties[res.countyId] && reps.counties[res.countyId].label) || "").replace(/ County Council$/, "") || "your";
+      var banner = document.createElement("p");
+      banner.className = "rf__local";
+      banner.innerHTML = "◎ DeFlock has already mapped <strong>" + n + " ALPR camera" + (n === 1 ? "" : "s") + "</strong> in " + cname + " County — not one put to a public vote. These are the people who can change that:";
+      resultsEl.appendChild(banner);
+    }
     if (res.county && res.county.rep) { resultsEl.appendChild(card(labelCounty(res.county), (res.county.label || "County Council"))); any = true; }
     if (res.city && res.city.reps && res.city.reps.length) {
       res.city.reps.forEach(function (r) { resultsEl.appendChild(card(r, res.city.label || "City Council")); });

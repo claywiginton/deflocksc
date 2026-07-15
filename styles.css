@@ -599,3 +599,29 @@ details.acc[open]>summary::after{content:"\2013"}
 .rf__credit{margin:1.3rem 0 0; font-family:var(--mono); font-size:.72rem; color:var(--slate); line-height:1.6}
 .rf__credit a{color:var(--slate); text-decoration:underline}
 @media (max-width:680px){ .rf__results{grid-template-columns:1fr} .rf__form .btn{flex:1 1 100%; text-align:center} }
+
+/* ---------- local camera banner (in rep-finder results) ---------- */
+.rf__local{
+  grid-column:1/-1; margin:0 0 .2rem; background:var(--navy); color:#fff;
+  border-radius:8px; padding:1rem 1.2rem; font-size:.98rem; line-height:1.45;
+}
+.rf__local strong{color:var(--brass)}
+
+/* ============================================================
+   BILL TRACKER
+   ============================================================ */
+.bills{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
+.bill{background:#fff; border:1px solid var(--line); border-radius:8px; padding:1.5rem 1.6rem; box-shadow:0 8px 24px -18px rgba(20,25,45,.5)}
+.bill--strong{border:1px solid var(--brass); border-top:4px solid var(--brass)}
+.bill__head{display:flex; align-items:center; gap:.7rem; flex-wrap:wrap; margin-bottom:.55rem}
+.bill__num{font-family:var(--serif-disp); font-size:1.5rem; color:var(--navy)}
+.bill__tag{font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:.22rem .65rem}
+.bill__tag--strong{color:#6b4d0e; background:var(--parch); border-color:var(--brass)}
+.bill h3{font-family:var(--serif-disp); font-weight:400; font-size:1.24rem; color:var(--crimson); margin:0 0 .5rem}
+.bill--strong h3{color:#8A1F2E}
+.bill p{margin:0 0 .85rem; color:#333; font-size:.95rem}
+.bill__foot{font-family:var(--mono); font-size:.75rem; color:var(--slate); margin:0 !important; display:flex; gap:.5rem 0.6rem; flex-wrap:wrap; align-items:center}
+.bill__status{color:var(--crimson); font-weight:500}
+.bill__foot a{color:var(--crimson); text-decoration:none}
+.bill__foot a:hover{text-decoration:underline}
+@media (max-width:680px){ .bills{grid-template-columns:1fr} }

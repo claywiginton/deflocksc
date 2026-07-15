@@ -34,6 +34,13 @@ MIT License — Copyright (c) 2026 Tim Simpson
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
 
+## Camera counts & bill statuses — DeflockSC
+`data/camera-counts.json` (ALPR cameras per SC county, originally from the
+DeFlock crowdsourced map) and the SC bill statuses shown in the bill tracker
+are adapted from the **DeflockSC** project
+(https://github.com/TimSimpsonJr/deflocksc-website), MIT (c) 2026 Tim Simpson,
+used with permission. Always verify bill status at scstatehouse.gov.
+
 ## Address geocoding — OpenStreetMap Nominatim
 Address search uses the **Nominatim** service.
 Geocoding © OpenStreetMap contributors, available under the ODbL.
