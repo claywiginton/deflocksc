@@ -639,3 +639,11 @@ details.acc[open]>summary::after{content:"\2013"}
 .foia__note{margin:.5rem 0 0; font-family:var(--serif); font-style:italic; color:var(--slate); font-size:.9rem}
 .foia__actions{margin:.85rem 0 0}
 .foia__actions .btn{font-size:.78rem; padding:.55rem .9rem}
+
+/* ---------- statewide camera choropleth ---------- */
+.scmap{margin:0 0 2.4rem}
+.scmap__frame{background:#0F1526; border:1px solid var(--ink-line); border-radius:8px; padding:1rem; overflow:hidden}
+.scmap__frame svg{width:100%; height:auto; display:block}
+.scmap__legend{display:flex; flex-wrap:wrap; gap:.5rem 1.1rem; margin:1rem 0 0; font-family:var(--mono); font-size:.72rem; color:#C7CEE0}
+.scmap__key{display:inline-flex; align-items:center; gap:.4rem}
+.scmap__sw{width:.9rem; height:.9rem; border-radius:2px; display:inline-block; border:1px solid rgba(255,255,255,.15)}

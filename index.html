@@ -131,8 +131,21 @@
 <section class="section section--ink section--tight" id="map">
   <div class="wrap">
     <p class="eyebrow eyebrow--gold">[ SEE IT FOR YOURSELF ]</p>
-    <h2 class="h2 h2--light">The cameras watching the Upstate — live</h2>
-    <p class="map__lead">Every dot is an automated license-plate reader logged on DeFlock's crowdsourced map. Pan and zoom to find the readers on your own street.</p>
+    <h2 class="h2 h2--light">It's not just Greenville — the whole state is filling in</h2>
+    <p class="map__lead">Every South Carolina county, shaded by the automated license-plate readers already mapped there. The Upstate is the darkest corner — but no county is spared, and not one camera was put to a public vote.</p>
+    <div class="scmap reveal">
+      <div class="scmap__frame" id="scMap" role="img" aria-label="Choropleth map of South Carolina counties shaded by number of mapped ALPR cameras; the Upstate is the densest."></div>
+      <div class="scmap__legend" aria-hidden="true">
+        <span class="scmap__key"><span class="scmap__sw" style="background:#ECE4D4"></span>0</span>
+        <span class="scmap__key"><span class="scmap__sw" style="background:#E3C6A0"></span>1–9</span>
+        <span class="scmap__key"><span class="scmap__sw" style="background:#D89A63"></span>10–24</span>
+        <span class="scmap__key"><span class="scmap__sw" style="background:#C56A43"></span>25–49</span>
+        <span class="scmap__key"><span class="scmap__sw" style="background:#A83A38"></span>50–99</span>
+        <span class="scmap__key"><span class="scmap__sw" style="background:#7A1E28"></span>100+</span>
+        <span class="scmap__key" style="color:#8A93AC">ALPR cameras mapped per county</span>
+      </div>
+    </div>
+    <p class="map__lead" style="margin-top:2.2rem">And here's the live map — every dot a reader logged on DeFlock's crowdsourced map. Pan and zoom to find the ones on your own street.</p>
     <div class="map__frame">
       <iframe src="https://maps.deflock.org/?lat=34.8308&amp;lng=-82.3894&amp;zoom=10.43" title="DeFlock live ALPR camera map — Upstate South Carolina" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
@@ -416,6 +429,17 @@
   }
 })();
 
+</script>
+<script>
+/* inject the statewide camera choropleth (keeps index.html small; enables <title> tooltips) */
+(function () {
+  var host = document.getElementById("scMap");
+  if (!host) return;
+  fetch("data/sc-camera-map.svg", { credentials: "omit" })
+    .then(function (r) { return r.ok ? r.text() : Promise.reject(); })
+    .then(function (svg) { host.innerHTML = svg; })
+    .catch(function () { host.innerHTML = '<p style="color:#8A93AC;font-family:var(--mono);font-size:.8rem;margin:0">Map unavailable — see the live map below.</p>'; });
+})();
 </script>
 </body>
 </html>

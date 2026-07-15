@@ -31,6 +31,8 @@ jobs:
           curl -fsSL "$BASE/public/camera-counts.json" -o /tmp/cc.json && \
             node -e "JSON.parse(require('fs').readFileSync('/tmp/cc.json'))" && \
             cp /tmp/cc.json data/camera-counts.json || echo "camera-counts refresh skipped"
+      - name: Rebuild the statewide camera map
+        run: npm run build:map
       - name: Commit if data changed
         run: |
           if [ -n "$(git status --porcelain data/)" ]; then

@@ -5,7 +5,9 @@
   "description": "Static campaign site. Node tooling is only used to regenerate the district/roster data for the find-your-representative tool.",
   "type": "module",
   "scripts": {
-    "build:districts": "node scripts/build-districts.mjs"
+    "build:districts": "node scripts/build-districts.mjs",
+    "build:map": "node scripts/build-map.mjs",
+    "build:data": "npm run build:districts && npm run build:map"
   },
   "devDependencies": {
     "open-civics": "^0.2.7",
