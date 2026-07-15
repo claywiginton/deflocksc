@@ -96,7 +96,13 @@
         if (layer.kind === "state-senate") out.state.senate = withDistrict(reps.state.senate[d], d, "senate");
         else if (layer.kind === "state-house") out.state.house = withDistrict(reps.state.house[d], d, "house");
         else if (layer.kind === "county") { out.countyId = layer.county; var c = reps.counties[layer.county]; out.county = { label: c && c.label, rep: withDistrict(c && c.members[d], d, "county") }; }
-        else if (layer.kind === "place") { var pl = reps.places[layer.place]; out.city = { label: pl && pl.label, rep: withDistrict(pl && pl.members[d], d, "city") }; }
+        else if (layer.kind === "place") {
+          var pl = reps.places[layer.place]; if (!pl) return;
+          var cityReps;
+          if (pl.districted && pl.members[d]) cityReps = [tagCity(pl.members[d], d, pl.city)];
+          else cityReps = (pl.all || []).map(function (m) { return tagCity(m, m.district, pl.city); });
+          out.city = { label: pl.label, reps: cityReps };
+        }
       }));
     });
     return Promise.all(jobs).then(function () { return out; });
@@ -104,6 +110,10 @@
   function withDistrict(rep, d, level) {
     if (!rep) return { vacant: true, district: d, level: level, name: null };
     return Object.assign({ level: level }, rep, { district: rep.district || d });
+  }
+  function tagCity(rep, d, cityName) {
+    if (!rep) return { level: "city", vacant: true, district: d, cityName: cityName, name: null };
+    return Object.assign({ level: "city", cityName: cityName }, rep, { district: rep.district || d });
   }
 
   /* ---- email drafting ---- */
@@ -115,8 +125,9 @@
       s = "Please put ALPR surveillance oversight on the agenda";
       b = "Dear " + name + ",\n\nI'm a resident of your district (" + (rep.districtLabel || ("District " + rep.district)) + "). There are now more than 400 automated license-plate reader cameras across the Upstate logging where every driver goes — with no public vote, no warrant requirement, and no published rules on who can search the data.\n\nI'm asking the Council to adopt an ALPR oversight ordinance: a public vote before any program, a warrant for searches, a 21-day retention limit, published audits, and no use for immigration enforcement.\n\nWill you support this and help bring it to an agenda?\n\nThank you,\n[Your name]\n[Your address]";
     } else if (rep.level === "city") {
-      s = "Oversight before Greenville renews its Flock cameras";
-      b = "Dear " + name + ",\n\nI'm a Greenville resident in your council district. The city funds Flock license-plate readers with no public hearing on the rules — who can search them, how long our movements are stored, or how errors are handled. Two local sisters were held at gunpoint over a false hit and are now suing.\n\nBefore any renewal, please hold a public hearing and adopt oversight — a warrant requirement, a short retention limit, published audits, and no immigration or out-of-state sharing — or let the contract lapse.\n\nThank you,\n[Your name]\n[Your address]";
+      var city = rep.cityName || "our city";
+      s = "Oversight before " + city + " expands license-plate surveillance";
+      b = "Dear " + name + ",\n\nI'm a resident of " + city + " and your constituent. Automated license-plate reader (ALPR) cameras log where every driver goes, yet there has been no public hearing on the rules — who can search the data, how long our movements are stored, or how errors are handled." + (/greenville/i.test(city) ? " Two local sisters were held at gunpoint over a false hit and are now suing." : "") + "\n\nBefore our city adopts or renews any ALPR contract, please hold a public hearing and put oversight in place — a warrant requirement, a short retention limit, published audits, and no immigration or out-of-state bulk sharing.\n\nThank you,\n[Your name]\n[Your address]";
     } else {
       var role = rep.level === "senate" ? "Senator" : "Representative";
       s = "Please champion the Community Data Protection Act (H.4675)";
@@ -174,7 +185,10 @@
     resultsEl.innerHTML = "";
     var any = false;
     if (res.county && res.county.rep) { resultsEl.appendChild(card(labelCounty(res.county), (res.county.label || "County Council"))); any = true; }
-    if (res.city && res.city.rep) { resultsEl.appendChild(card(res.city.rep, (res.city.label || "City Council"))); any = true; }
+    if (res.city && res.city.reps && res.city.reps.length) {
+      res.city.reps.forEach(function (r) { resultsEl.appendChild(card(r, res.city.label || "City Council")); });
+      any = true;
+    }
     if (res.state.senate) { resultsEl.appendChild(card(res.state.senate, "SC Senate — District " + res.state.senate.district)); any = true; }
     if (res.state.house) { resultsEl.appendChild(card(res.state.house, "SC House — District " + res.state.house.district)); any = true; }
     if (!res.county && res.state.senate) {
