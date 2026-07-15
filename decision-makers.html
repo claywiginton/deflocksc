@@ -193,7 +193,7 @@
     <p class="eyebrow">[ WHERE THE BILLS STAND ]</p>
     <h2 class="h2">The four state bills — and which one to push</h2>
     <p class="section__lead">Four ALPR bills were filed; all sit in committee, and the 2025&ndash;26 session adjourned without passing any of them — so the fight resets in January 2027. Read them, then ask the legislators you found above to champion the strongest, <strong>H.4675</strong>.</p>
-    <div class="bills">
+    <div class="bills" id="billsGrid">
       <article class="bill bill--strong reveal">
         <div class="bill__head"><span class="bill__num">H.4675</span><span class="bill__tag bill__tag--strong">Strongest — back this one</span></div>
         <h3>Bans cloud storage, AI tracking &amp; federal access</h3>
@@ -300,9 +300,19 @@ Thank you,
 <span class="fill">[Address / district]</span></div>
     </div>
 
+    <h3 style="font-family:var(--serif-disp); font-weight:400; font-size:1.7rem; color:var(--navy); margin:2.4rem 0 .6rem">Where to send your records request</h3>
+    <p class="section__lead" style="margin-bottom:1.1rem">Pick a county to see the agencies running cameras — and the clerks who hold the budget records — then copy the request straight to that agency.</p>
+    <label class="finder__label" for="foiaCounty">County</label>
+    <select id="foiaCounty" class="finder__select" style="max-width:22rem; margin-bottom:1.1rem">
+      <option value="greenville">Greenville County</option>
+      <option value="spartanburg">Spartanburg County</option>
+      <option value="anderson">Anderson County</option>
+    </select>
+    <div id="foiaList" class="foia" aria-live="polite"></div>
+
     <div class="tmpl">
       <div class="tmpl__bar"><h4>4 · Public-records (FOIA) request to the agency</h4><button class="tmpl__copy" type="button">Copy</button></div>
-      <div class="tmpl__body">Subject: Freedom of Information Act request — ALPR / Flock records
+      <div class="tmpl__body" id="tmpl-foia">Subject: Freedom of Information Act request — ALPR / Flock records
 
 To the <span class="fill">[Greenville County Sheriff's Office / Greenville Police Department]</span> FOIA Officer,
 
@@ -408,6 +418,75 @@ Thank you,
       copyText(btn.closest(".tmpl").querySelector(".tmpl__body").innerText, btn, "Copy");
     });
   });
+
+  /* bill tracker — re-render from data/bills.json if available (static cards are the fallback) */
+  var billsGrid = document.getElementById("billsGrid");
+  if (billsGrid) {
+    var BILL_META = {
+      H4675: { strong: true, tag: "Strongest — back this one", status: "In House Judiciary" },
+      S447: { strong: false, tag: "Furthest along — but weak", status: "Awaiting Senate floor" },
+      H3155: { strong: false, tag: "Stalled", status: "In House Judiciary" },
+      H4013: { strong: false, tag: "Stalled", status: "In House Ed. & Public Works" },
+    };
+    var be = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+    fetch("data/bills.json", { credentials: "omit" }).then(function (r) { return r.json(); }).then(function (bills) {
+      if (!Array.isArray(bills) || !bills.length) return;
+      billsGrid.innerHTML = "";
+      bills.forEach(function (b) {
+        var m = BILL_META[b.bill] || { strong: false, tag: "" };
+        var num = b.bill.replace(/^([A-Z]+)(\d+)$/, "$1.$2");
+        var el = document.createElement("article");
+        el.className = "bill" + (m.strong ? " bill--strong" : "");
+        el.innerHTML =
+          '<div class="bill__head"><span class="bill__num">' + be(num) + '</span>' +
+          (m.tag ? '<span class="bill__tag' + (m.strong ? " bill__tag--strong" : "") + '">' + be(m.tag) + '</span>' : '') + '</div>' +
+          '<h3>' + be(b.title) + '</h3>' +
+          '<p>' + be(b.description) + '</p>' +
+          '<p class="bill__foot"><span class="bill__status">' + be(m.status || b.status) + '</span>' +
+          (b.lastActionDate ? ' · last action ' + be(b.lastActionDate) : '') +
+          (b.url ? ' · <a href="' + be(b.url) + '" target="_blank" rel="noopener">Read the bill ↗</a>' : '') + '</p>';
+        billsGrid.appendChild(el);
+      });
+    }).catch(function () { /* keep the static fallback cards */ });
+  }
+
+  /* FOIA agency directory */
+  var foiaSel = document.getElementById("foiaCounty");
+  var foiaList = document.getElementById("foiaList");
+  if (foiaSel && foiaList) {
+    var FOIA_PLACEHOLDER = "[Greenville County Sheriff's Office / Greenville Police Department]";
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+    fetch("data/foia-contacts.json", { credentials: "omit" }).then(function (r) { return r.json(); }).then(function (data) {
+      var agencies = data.agencies || [];
+      function renderFoia() {
+        var county = foiaSel.value;
+        var list = agencies.filter(function (a) { return a.county === county; });
+        foiaList.innerHTML = "";
+        list.forEach(function (a) {
+          var meta = [];
+          if (a.phone) meta.push('<a href="tel:' + a.phone.replace(/[^0-9+]/g, "") + '">' + a.phone + '</a>');
+          if (a.email) meta.push('<a href="mailto:' + a.email + '">' + a.email + '</a>');
+          if (a.address) meta.push(esc(a.address));
+          var el = document.createElement("div");
+          el.className = "foia__card" + (a.cameras ? " foia__card--alpr" : "");
+          el.innerHTML =
+            '<div class="foia__top"><span class="foia__name">' + esc(a.name) + '</span>' +
+            (a.cameras ? '<span class="foia__cams">' + a.cameras + ' camera' + (a.cameras === 1 ? "" : "s") + '</span>' : '<span class="foia__cams" style="color:var(--slate)">records custodian</span>') + '</div>' +
+            (meta.length ? '<p class="foia__meta">' + meta.join(' &nbsp;·&nbsp; ') + '</p>' : '<p class="foia__meta" style="color:var(--slate)">Contact via the agency’s records division.</p>') +
+            (a.notes ? '<p class="foia__note">' + esc(a.notes) + '</p>' : '') +
+            '<div class="foia__actions"><button class="btn btn--line foia__copy" type="button">Copy FOIA request for this agency</button></div>';
+          el.querySelector(".foia__copy").addEventListener("click", function (e) {
+            var tpl = document.getElementById("tmpl-foia");
+            var text = (tpl ? tpl.innerText : "").split(FOIA_PLACEHOLDER).join(a.name);
+            copyText(text, e.currentTarget, "Copy FOIA request for this agency");
+          });
+          foiaList.appendChild(el);
+        });
+      }
+      foiaSel.addEventListener("change", renderFoia);
+      renderFoia();
+    }).catch(function () { foiaList.innerHTML = '<p class="foia__note">Agency list unavailable — use the template below and address it to your agency.</p>'; });
+  }
 
   /* reveal */
   if ("IntersectionObserver" in window && !reduce) {

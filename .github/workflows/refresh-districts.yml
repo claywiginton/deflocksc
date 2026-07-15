@@ -22,6 +22,15 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Regenerate district & roster data
         run: npm run build:districts
+      - name: Refresh bill & camera data from DeflockSC (MIT, used with permission)
+        run: |
+          BASE="https://raw.githubusercontent.com/TimSimpsonJr/deflocksc-website/HEAD"
+          curl -fsSL "$BASE/src/data/bills.json" -o /tmp/bills.json && \
+            node -e "JSON.parse(require('fs').readFileSync('/tmp/bills.json'))" && \
+            cp /tmp/bills.json data/bills.json || echo "bills refresh skipped"
+          curl -fsSL "$BASE/public/camera-counts.json" -o /tmp/cc.json && \
+            node -e "JSON.parse(require('fs').readFileSync('/tmp/cc.json'))" && \
+            cp /tmp/cc.json data/camera-counts.json || echo "camera-counts refresh skipped"
       - name: Commit if data changed
         run: |
           if [ -n "$(git status --porcelain data/)" ]; then

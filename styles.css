@@ -625,3 +625,17 @@ details.acc[open]>summary::after{content:"\2013"}
 .bill__foot a{color:var(--crimson); text-decoration:none}
 .bill__foot a:hover{text-decoration:underline}
 @media (max-width:680px){ .bills{grid-template-columns:1fr} }
+
+/* ---------- FOIA agency directory ---------- */
+.foia{display:grid; gap:.8rem; margin:0 0 1.6rem}
+.foia__card{background:#fff; border:1px solid var(--line); border-left:4px solid var(--navy); border-radius:8px; padding:1.1rem 1.3rem; box-shadow:0 8px 24px -18px rgba(20,25,45,.5)}
+.foia__card--alpr{border-left-color:var(--crimson)}
+.foia__top{display:flex; justify-content:space-between; gap:1rem; align-items:baseline; flex-wrap:wrap}
+.foia__name{font-family:var(--serif-disp); font-size:1.2rem; color:var(--navy)}
+.foia__cams{font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--crimson); white-space:nowrap}
+.foia__meta{margin:.4rem 0 0; font-size:.9rem; color:#555; line-height:1.6}
+.foia__meta a{color:var(--crimson); text-decoration:none}
+.foia__meta a:hover{text-decoration:underline}
+.foia__note{margin:.5rem 0 0; font-family:var(--serif); font-style:italic; color:var(--slate); font-size:.9rem}
+.foia__actions{margin:.85rem 0 0}
+.foia__actions .btn{font-size:.78rem; padding:.55rem .9rem}

@@ -1,0 +1,38 @@
+[
+  {
+    "bill": "H4675",
+    "title": "Would ban cloud storage, AI tracking, and federal data access",
+    "status": "In House Judiciary",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4675.htm",
+    "lastAction": "Referred to Committee on Judiciary",
+    "lastActionDate": "1/13/2026",
+    "description": "Bars third-party cloud storage, prohibits AI vehicle tracking beyond plates, caps retention at 21 days, requires warrants, and blocks federal access. If it passed, every existing Flock contract in SC would be void."
+  },
+  {
+    "bill": "S447",
+    "title": "Would regulate license plate reader systems statewide",
+    "status": "Awaiting Senate floor",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/447.htm",
+    "lastAction": "Committee report: Favorable, Judiciary",
+    "lastActionDate": "4/9/2026",
+    "description": "Cleared Senate Judiciary and awaits a floor vote. Sets 90-day retention and written-policy rules — but leaves cloud storage, federal sharing, and AI tracking untouched, and authorizes the SLED database now being challenged in court."
+  },
+  {
+    "bill": "H3155",
+    "title": "Would regulate automatic license plate readers",
+    "status": "In House Judiciary",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/3155.htm",
+    "lastAction": "Referred to Committee on Judiciary",
+    "lastActionDate": "1/14/2025",
+    "description": "Sits in House Judiciary with no action since referral. Would require transparency about sharing data with other agencies, including federal law enforcement."
+  },
+  {
+    "bill": "H4013",
+    "title": "Would regulate automated license plate readers",
+    "status": "In House Ed. & Public Works",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4013.htm",
+    "lastAction": "Member(s) request name added as sponsor",
+    "lastActionDate": "3/26/2025",
+    "description": "In House Education & Public Works with no action. Addresses deployment oversight and data-access policies."
+  }
+]
