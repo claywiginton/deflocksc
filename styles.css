@@ -647,3 +647,11 @@ details.acc[open]>summary::after{content:"\2013"}
 .scmap__legend{display:flex; flex-wrap:wrap; gap:.5rem 1.1rem; margin:1rem 0 0; font-family:var(--mono); font-size:.72rem; color:#C7CEE0}
 .scmap__key{display:inline-flex; align-items:center; gap:.4rem}
 .scmap__sw{width:.9rem; height:.9rem; border-radius:2px; display:inline-block; border:1px solid rgba(255,255,255,.15)}
+
+/* ---------- resource link lists ---------- */
+.links{list-style:none; margin:.3rem 0 0; padding:0; display:grid; gap:.55rem}
+.links li{position:relative; padding-left:1.1rem; font-size:.94rem; line-height:1.4}
+.links li::before{content:""; position:absolute; left:0; top:.55rem; width:.4rem; height:.4rem; border-radius:50%; background:var(--crimson)}
+.links a{color:var(--navy); font-weight:500; text-decoration:none}
+.links a:hover{color:var(--crimson); text-decoration:underline}
+.links span{display:block; color:var(--slate); font-size:.82rem; font-weight:400}
