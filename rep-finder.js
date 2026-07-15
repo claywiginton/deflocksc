@@ -278,8 +278,8 @@
     var label = (reps.counties[countyId] && reps.counties[countyId].label) || "your county council";
     var cname = label.replace(/ Council$/, "");
     var meeting = countyId === "greenville"
-      ? "Greenville County Council meets the <strong>1st &amp; 3rd Tuesday</strong> at County Square, 301 University Ridge — with a public-comment period."
-      : cname + " meets on a published schedule with a public-comment period — find the next date and sign-up on the county's official website.";
+      ? 'Greenville County Council meets the <strong>1st &amp; 3rd Tuesday</strong>, 6&nbsp;p.m., at County Square, 301 University Ridge. Register to speak on the <a href="https://www.greenvillecounty.org/apps/citizencomments/" target="_blank" rel="noopener" style="color:var(--brass)">Citizen Comments form ↗</a> — it opens 4:45&nbsp;p.m. the Monday before (or sign up in person 4:15–4:45&nbsp;p.m. that day). Each speaker gets 3 minutes.'
+      : cname + " holds a public-comment period — find the next date and the sign-up process on the county's official website.";
     var el = document.createElement("div");
     el.className = "rf__showup";
     el.innerHTML =
