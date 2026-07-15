@@ -1,0 +1,14 @@
+{
+  "name": "turn-off-the-cameras",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static campaign site. Node tooling is only used to regenerate the district/roster data for the find-your-representative tool.",
+  "type": "module",
+  "scripts": {
+    "build:districts": "node scripts/build-districts.mjs"
+  },
+  "devDependencies": {
+    "open-civics": "^0.2.7",
+    "open-civics-boundaries": "^0.2.7"
+  }
+}

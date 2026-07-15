@@ -56,32 +56,23 @@
   <div class="wrap">
     <p class="eyebrow">[ FIND &amp; CONTACT YOUR REP ]</p>
     <h2 class="h2">Who represents you — and how to reach them</h2>
-    <p class="section__lead">Two steps. Because ZIP codes cross council districts, the county's official map is the only reliable way to find <em>your</em> district — so we start there, then hand you a ready-to-send email.</p>
-    <div class="finder">
-      <article class="finder__step">
-        <span class="finder__num">1</span>
-        <h3>Find your district</h3>
-        <p>Search your home address on Greenville County's official map and note your <strong>County Council district number</strong> (they run 17&ndash;28).</p>
-        <p><a class="btn btn--primary" href="https://www.gcgis.org/apps/greenvillejs/?MapTheme=County+Council+Districts" target="_blank" rel="noopener">Open the official district map &rarr;</a></p>
-        <p class="finder__hint">On the map: search your address → read the County Council district it falls in.</p>
-      </article>
-      <article class="finder__step">
-        <span class="finder__num">2</span>
-        <h3>Reach your member</h3>
-        <label class="finder__label" for="distSel">Your council district</label>
-        <select id="distSel" class="finder__select" aria-describedby="finderResult">
-          <option value="">Select district…</option>
-        </select>
-        <div id="finderResult" class="finder__result" aria-live="polite"></div>
-        <p class="finder__hint" style="margin-top:1rem !important">Don't know it yet? Do step 1 first — it takes about thirty seconds.</p>
-      </article>
+    <p class="section__lead">Type your address (or tap <strong>Use my location</strong>) and we'll match your <strong>state, county, and city</strong> representatives — each with a ready-to-send email. It all runs in your browser; your address is never sent to us.</p>
+    <div class="rf">
+      <form id="rfForm" class="rf__form" autocomplete="off">
+        <input id="rfAddr" class="rf__input" type="text" placeholder="123 Main St, Greenville, SC 29601" aria-label="Your home address" />
+        <button class="btn btn--primary" type="submit">Find my representatives</button>
+        <button class="btn rf__geo" type="button" id="rfGeo">Use my location</button>
+      </form>
+      <div id="rfStatus" class="rf__status" role="status" aria-live="polite"></div>
+      <div id="rfResults" class="rf__results"></div>
+      <p class="rf__credit">Runs entirely in your browser — your address never leaves your device. District maps &amp; current rosters via <a href="https://www.npmjs.com/package/open-civics" target="_blank" rel="noopener">open-civics</a> (MIT, © Tim Simpson / DeflockSC); address search by <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Always confirm a member before sending.</p>
     </div>
     <div class="finder__more">
-      <h4>Also reach —</h4>
+      <h4>Prefer to do it by hand?</h4>
       <div class="linkrow">
-        <a class="btn btn--line" href="https://www.greenvillesc.gov/city-council" target="_blank" rel="noopener">Greenville City Council &rarr;</a>
-        <a class="btn btn--line" href="https://www.scstatehouse.gov/legislatorssearch.php" target="_blank" rel="noopener">Your state legislators (by address) &rarr;</a>
-        <a class="btn btn--line" href="#tools">All email templates &rarr;</a>
+        <a class="btn btn--line" href="https://www.gcgis.org/apps/greenvillejs/?MapTheme=County+Council+Districts" target="_blank" rel="noopener">Official district map &rarr;</a>
+        <a class="btn btn--line" href="https://www.scstatehouse.gov/legislatorssearch.php" target="_blank" rel="noopener">SC legislator lookup &rarr;</a>
+        <a class="btn btn--line" href="#tools">Email templates &rarr;</a>
       </div>
     </div>
   </div>
@@ -381,36 +372,6 @@ Thank you,
     });
   });
 
-  /* find-your-rep widget */
-  var sel = document.getElementById("distSel");
-  var out = document.getElementById("finderResult");
-  var ROSTER = "https://www.greenvillecounty.org/Council/";
-  var MAP = "https://www.gcgis.org/apps/greenvillejs/?MapTheme=County+Council+Districts";
-  if (sel && out) {
-    for (var d = 17; d <= 28; d++) {
-      var o = document.createElement("option");
-      o.value = String(d); o.textContent = "District " + d;
-      sel.appendChild(o);
-    }
-    sel.addEventListener("change", function () {
-      var v = sel.value;
-      if (!v) { out.classList.remove("show"); out.innerHTML = ""; return; }
-      out.innerHTML =
-        '<p><strong>You’re in Greenville County Council District ' + v + '.</strong></p>' +
-        '<p>Get your member’s current name, email &amp; phone straight from the county’s own page — ' +
-        '<a href="' + ROSTER + '" target="_blank" rel="noopener">open the official roster →</a> ' +
-        '(then find District ' + v + '). Not sure it’s right? <a href="' + MAP + '" target="_blank" rel="noopener">re-check on the map →</a></p>' +
-        '<p><button class="tmpl__copy" type="button" id="finderCopy">Copy your email to District ' + v + '</button></p>';
-      out.classList.add("show");
-      var fc = document.getElementById("finderCopy");
-      fc.addEventListener("click", function () {
-        var tpl = document.getElementById("tmpl-county");
-        var text = (tpl ? tpl.innerText : "").replace("District [#]", "District " + v);
-        copyText(text, fc, "Copy your email to District " + v);
-      });
-    });
-  }
-
   /* reveal */
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
@@ -422,5 +383,6 @@ Thank you,
   }
 })();
 </script>
+<script src="rep-finder.js" defer></script>
 </body>
 </html>

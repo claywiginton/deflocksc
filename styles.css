@@ -562,3 +562,40 @@ details.acc[open]>summary::after{content:"\2013"}
 .finder__more h4{font-family:var(--mono); font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; color:var(--crimson); margin:0 0 .85rem}
 .linkrow{display:flex; gap:.8rem; flex-wrap:wrap}
 @media (max-width:680px){ .finder{grid-template-columns:1fr; gap:1.5rem} }
+
+/* ============================================================
+   REP-FINDER (address / geolocation -> your officials)
+   ============================================================ */
+.rf{margin:.4rem 0 1.4rem}
+.rf__form{display:flex; gap:.7rem; flex-wrap:wrap; align-items:stretch}
+.rf__input{
+  flex:1 1 22rem; font-family:var(--sans); font-size:1rem; padding:.85rem 1rem;
+  border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink);
+}
+.rf__input:focus-visible{outline:2px solid var(--brass); outline-offset:2px}
+.rf__form .btn{border:0; cursor:pointer}
+.rf__geo{background:var(--navy); color:#fff}
+.rf__geo:hover{background:var(--navy-2); transform:translateY(-2px)}
+.rf__status{margin:.9rem 0 0; font-family:var(--mono); font-size:.82rem; color:var(--slate); min-height:1.2em}
+.rf__status.err{color:var(--crimson)}
+.rf__results{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.4rem}
+.rf__card{
+  background:#fff; border:1px solid var(--line); border-left:4px solid var(--navy);
+  border-radius:8px; padding:1.4rem 1.5rem; box-shadow:0 8px 24px -18px rgba(20,25,45,.5);
+}
+.rf__card--county{border-left-color:var(--crimson)}
+.rf__card--city{border-left-color:var(--brass)}
+.rf__level{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--crimson); margin:0 0 .35rem}
+.rf__card--state .rf__level{color:var(--navy)}
+.rf__card--city .rf__level{color:#8a6d1f}
+.rf__card h3{font-family:var(--serif-disp); font-weight:400; font-size:1.45rem; color:var(--ink); margin:0 0 .15rem}
+.rf__meta{margin:0 0 .7rem; color:var(--slate); font-size:.9rem}
+.rf__contact{margin:0 0 1rem; font-size:.9rem; line-height:1.6; word-break:break-word}
+.rf__contact a{color:var(--crimson); font-weight:500; text-decoration:none}
+.rf__contact a:hover{text-decoration:underline}
+.rf__actions{display:flex; gap:.6rem; flex-wrap:wrap}
+.rf__actions .btn{font-size:.82rem; padding:.6rem 1rem}
+.rf__note{grid-column:1/-1; font-family:var(--serif); font-style:italic; color:var(--slate); margin:.2rem 0 0}
+.rf__credit{margin:1.3rem 0 0; font-family:var(--mono); font-size:.72rem; color:var(--slate); line-height:1.6}
+.rf__credit a{color:var(--slate); text-decoration:underline}
+@media (max-width:680px){ .rf__results{grid-template-columns:1fr} .rf__form .btn{flex:1 1 100%; text-align:center} }

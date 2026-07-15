@@ -1,0 +1,35 @@
+name: Refresh district & roster data
+
+# Keeps the find-your-representative data current by re-pulling the open-civics
+# packages and regenerating data/. Runs monthly and on demand.
+on:
+  schedule:
+    - cron: "0 6 1 * *" # 1st of each month, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install data packages
+        run: npm install --no-audit --no-fund
+      - name: Regenerate district & roster data
+        run: npm run build:districts
+      - name: Commit if data changed
+        run: |
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git config user.name "district-data-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/
+            git commit -m "chore: refresh district & roster data [skip ci]"
+            git push
+          else
+            echo "No district/roster changes."
+          fi
