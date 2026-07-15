@@ -277,9 +277,12 @@
   function showUp(countyId) {
     var label = (reps.counties[countyId] && reps.counties[countyId].label) || "your county council";
     var cname = label.replace(/ Council$/, "");
-    var meeting = countyId === "greenville"
-      ? 'Greenville County Council meets the <strong>1st &amp; 3rd Tuesday</strong>, 6&nbsp;p.m., at County Square, 301 University Ridge. Register to speak on the <a href="https://www.greenvillecounty.org/apps/citizencomments/" target="_blank" rel="noopener" style="color:var(--brass)">Citizen Comments form ↗</a> — it opens 4:45&nbsp;p.m. the Monday before (or sign up in person 4:15–4:45&nbsp;p.m. that day). Each speaker gets 3 minutes.'
-      : cname + " holds a public-comment period — find the next date and the sign-up process on the county's official website.";
+    var MEETINGS = {
+      greenville: 'Greenville County Council meets the <strong>1st &amp; 3rd Tuesday</strong>, 6&nbsp;p.m., at County Square, 301 University Ridge. Register to speak on the <a href="https://www.greenvillecounty.org/apps/citizencomments/" target="_blank" rel="noopener" style="color:var(--brass)">Citizen Comments form ↗</a> — it opens 4:45&nbsp;p.m. the Monday before (or sign up in person 4:15–4:45&nbsp;p.m. that day). 3 minutes each.',
+      spartanburg: 'Spartanburg County Council meets the <strong>3rd Monday</strong>, 5:15&nbsp;p.m., at the County Administration Building, 366 N. Church St. Confirm the public-comment sign-up on the <a href="https://www.spartanburgcounty.gov/189/County-Council" target="_blank" rel="noopener" style="color:var(--brass)">County Council page ↗</a>.',
+      anderson: 'Anderson County Council meets the <strong>1st &amp; 3rd Tuesday</strong>, 6:30&nbsp;p.m., at the Historic Courthouse, 101 S. Main St. The &ldquo;Citizens Comments&rdquo; period allows 3 minutes on agenda items — see the <a href="https://www.andersoncountysc.org/county-council/" target="_blank" rel="noopener" style="color:var(--brass)">County Council page ↗</a>.',
+    };
+    var meeting = MEETINGS[countyId] || (cname + " holds a public-comment period — find the schedule and sign-up on the county's official website.");
     var el = document.createElement("div");
     el.className = "rf__showup";
     el.innerHTML =

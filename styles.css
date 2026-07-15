@@ -685,3 +685,7 @@ details.acc[open]>summary::after{content:"\2013"}
 .rf__showup li{margin:0 0 .5rem; line-height:1.45}
 .rf__showup li strong{color:#fff}
 @media (max-width:680px){ .rf__me-grid{grid-template-columns:1fr} }
+
+/* two-column layout for the show-up meeting cards */
+.who--2{grid-template-columns:1fr 1fr}
+@media (max-width:900px){ .who--2{grid-template-columns:1fr} }
