@@ -2,37 +2,37 @@
   {
     "bill": "H4675",
     "title": "Would ban cloud storage, AI tracking, and federal data access",
-    "status": "In House Judiciary",
+    "status": "In Committee, House Currently residing in the House Committee onJudiciary",
     "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4675.htm",
     "lastAction": "Referred to Committee on Judiciary",
     "lastActionDate": "1/13/2026",
-    "description": "Bars third-party cloud storage, prohibits AI vehicle tracking beyond plates, caps retention at 21 days, requires warrants, and blocks federal access. If it passed, every existing Flock contract in SC would be void."
+    "description": "H4675 is the strongest of the four bills. It bans third-party cloud storage of camera data, prohibits AI-based vehicle tracking beyond license plates, sets a 21-day retention limit, requires warrants for data access, and explicitly blocks federal data access. If passed, every existing Flock Safety contract in SC would be void."
   },
   {
     "bill": "S447",
     "title": "Would regulate license plate reader systems statewide",
-    "status": "Awaiting Senate floor",
+    "status": "In Committee, Senate Judiciary",
     "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/447.htm",
-    "lastAction": "Committee report: Favorable, Judiciary",
+    "lastAction": "Committee report: Favorable Judiciary",
     "lastActionDate": "4/9/2026",
-    "description": "Cleared Senate Judiciary and awaits a floor vote. Sets 90-day retention and written-policy rules — but leaves cloud storage, federal sharing, and AI tracking untouched, and authorizes the SLED database now being challenged in court."
+    "description": "S447 cleared Senate Judiciary on April 9, 2026 and is now awaiting a Senate floor vote. It establishes 90-day data retention, written policy requirements, and misdemeanor penalties, but leaves cloud storage, federal data sharing, and AI vehicle tracking unregulated. It also explicitly authorizes the SLED database currently being challenged in court."
   },
   {
     "bill": "H3155",
     "title": "Would regulate automatic license plate readers",
-    "status": "In House Judiciary",
+    "status": "In Committee, House Judiciary",
     "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/3155.htm",
     "lastAction": "Referred to Committee on Judiciary",
     "lastActionDate": "1/14/2025",
-    "description": "Sits in House Judiciary with no action since referral. Would require transparency about sharing data with other agencies, including federal law enforcement."
+    "description": "H3155 sits in the House Judiciary Committee with no action taken. It would regulate how automatic license plate readers are deployed and require transparency about data sharing with other agencies, including federal law enforcement."
   },
   {
     "bill": "H4013",
     "title": "Would regulate automated license plate readers",
-    "status": "In House Ed. & Public Works",
+    "status": "In Committee, House Education and Public Works",
     "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4013.htm",
-    "lastAction": "Member(s) request name added as sponsor",
+    "lastAction": "Member(s) request name added as sponsor: Alexander",
     "lastActionDate": "3/26/2025",
-    "description": "In House Education & Public Works with no action. Addresses deployment oversight and data-access policies."
+    "description": "H4013 is in the House Education and Public Works Committee with no action taken. It addresses automated license plate reader regulation, focusing on deployment oversight and data access policies."
   }
 ]
